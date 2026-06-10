@@ -1,18 +1,19 @@
 local Games = {}
+
 local RealGamesIDS = {
-  84575720768520 = "Lucky Block Rush"
+	84575720768520
 }
 
-local RealGameNames = {
-  ["Lucky Block Rush"] = 84575720768520
+local RealGamesNames = {
+	"Lucky Block Rush"
 }
-  
+
 function Games.GetGamesIDS()
-  return RealGamesIDS
+	return RealGamesIDS
 end
 
 function Games.GetGamesNames()
-  return RealGameNames
+	return RealGamesNames
 end
 
 return Games
