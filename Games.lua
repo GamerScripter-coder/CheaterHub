@@ -8,7 +8,7 @@ local RealGameNames = {
 }
   
 function Games.GetGamesIDS()
-  return RealGameIDS
+  return RealGamesIDS
 end
 
 function Games.GetGamesNames()
