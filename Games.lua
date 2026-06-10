@@ -4,7 +4,7 @@ local RealGamesIDS = {
 }
 
 local RealGameNames = {
-  [84575720768520] = "Lucky Block Rush"
+  ["Lucky Block Rush"] = 84575720768520
 }
   
 function Games.GetGamesIDS()
