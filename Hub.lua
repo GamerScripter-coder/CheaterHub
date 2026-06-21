@@ -672,6 +672,14 @@ local function exstr(site)
 	loadstring(game:HttpGet(site, true))()
 end
 
+local function GetGameName(id)
+   local MarketplaceService = game:GetService("MarketplaceService")
+	
+   local info = MarketplaceService:GetProductInfo(id)
+
+   return info.Name
+end
+
 function UIModule:AddBTN(tab, Btntxt, callback)
 	local clone = TabBtn:Clone()
 	clone.txt.Text = Btntxt
@@ -800,6 +808,9 @@ function UIModule:AddGame(id)
 			end)
 			Game = g
 		end
+	end
+	if not Game then
+		selfM:AddLabel("This Game is not Supported: "..GetGameName(game.PlaceId).."")
 	end
 end
 
