@@ -123,7 +123,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
             local RunSx2
 
 			selfMod:AddTG(TS, "Click x2Speed Visibility", function(v)
-				ClickX2Speed = state
+				ClickX2Speed = v
 
 	if state then
 		if x2Connection then
@@ -181,7 +181,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
             local HealthConn
 
 			selfMod:AddTG(TS, "InvincibleWithBosses", function(v)
-				if state == true then
+				if v == true then
       BossesConn = BossesFolder.ChildAdded:Connect(function(child)
 	     local PrimaryPart = child.PrimaryPart
 	     for _,part in pairs(child:GetDescendants()) do
