@@ -791,7 +791,7 @@ function UIModule:AddGame(id)
 	for name, g in pairs(Games) do
 		if g.Id == id then
 			if g.DoFunc then
-				g.DoFunc(selfM)
+				g.DoFunc(selfM, TabsScrolling)
 			end
 		end
 	end
