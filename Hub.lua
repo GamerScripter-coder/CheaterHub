@@ -692,7 +692,7 @@ function UIModule:AddTG(tab, TGtxt, callback)
 			clone.Toggle.ToggleOFF.Visible = false
 			clone.Toggle.ToggleON.Visible = true
 		else
-			clone.Toggle.BackgroundColor3 = clone.Toggle.OFTG.Value
+			clone.Toggle.BackgroundColor3 = clone.Toggle.OFFTG.Value
 			clone.Toggle.ToggleOFF.Visible = true
 			clone.Toggle.ToggleON.Visible = false
 		end
