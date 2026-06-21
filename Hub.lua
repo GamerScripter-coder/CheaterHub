@@ -789,10 +789,11 @@ function UIModule:AddGame(id)
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/matteomartino23/GameHub/refs/heads/main/Games.lua"))()
 	local Game
 	for name, g in pairs(Games) do
-		if g.Id == id then
-			if g.DoFunc then
+		if g.DoFunc then
+			selfM:AddGameChecker(id, function()
 				g.DoFunc(selfM, TabsScrolling)
-			end
+			end)
+			Game = g
 		end
 	end
 end
@@ -833,7 +834,7 @@ for _,btn in pairs(Tabs:GetChildren()) do
 					selfM:AddHome()
 				end
 				if btn.Name == "Game" then
-					selfM:AddGame()
+					selfM:AddGame(game.PlaceId)
 				end
 				if btn.Name == "Games" then
 					selfM:AddGames()
