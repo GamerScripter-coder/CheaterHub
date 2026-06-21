@@ -711,7 +711,7 @@ end
 function UIModule:AddGT(tab, GtTxt, gameId)
 	local clone = GameTeleporter:Clone()
 	clone.Parent = tab
-	clone.Text = GtTxt
+	clone.txt.Text = GtTxt
 	clone.MouseButton1Click:Connect(function()
 		local plr = game.Players.LocalPlayer
 		game:GetService("TeleportService"):Teleport(gameId, plr)
