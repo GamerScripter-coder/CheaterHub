@@ -125,7 +125,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			selfMod:AddTG(TS, "Click x2Speed Visibility", function(v)
 				ClickX2Speed = v
 
-	if state then
+	if v then
 		if x2Connection then
 			x2Connection:Disconnect()
 			x2Connection = nil
