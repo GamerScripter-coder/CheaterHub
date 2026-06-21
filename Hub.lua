@@ -683,23 +683,28 @@ function UIModule:AddTG(tab, TGtxt, callback)
 	local clone = TabTG:Clone()
 	clone.txt.Text = TGtxt
 	clone.Parent = tab
-	
-	local s = false
-	
-	clone.MouseButton1Click:Connect(function()
-		s = not s
-		clone.Status.Value = s
-		if s == true then
-			clone.Toggle.BackgroundColor3 = clone.Toggle.ON.Value
+
+	local state = false
+
+	local function updateUI()
+		if state then
+			clone.Toggle.BackgroundColor3 = clone.Toggle.ONTG.Value
 			clone.Toggle.ToggleOFF.Visible = false
 			clone.Toggle.ToggleON.Visible = true
-			callback(s)
 		else
-			clone.Toggle.BackgroundColor3 = clone.Toggle.OFF.Value
+			clone.Toggle.BackgroundColor3 = clone.Toggle.OFTG.Value
 			clone.Toggle.ToggleOFF.Visible = true
 			clone.Toggle.ToggleON.Visible = false
-			callback(s)
 		end
+	end
+
+	updateUI()
+
+	clone.MouseButton1Click:Connect(function()
+		state = not state
+		clone.Status.Value = state
+		updateUI()
+		callback(state)
 	end)
 end
 
