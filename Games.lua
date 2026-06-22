@@ -323,4 +323,6 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 function Games:GetGame(name)
 	return Games[name] or nil
 end
+
+print("1.0.0")
 return Games
