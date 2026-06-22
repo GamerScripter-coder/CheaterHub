@@ -274,6 +274,49 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 				end
 			end)
 	    end
+	},
+	["Pilfering Pirates"] = {
+		Name = "Pilfering Pirates",
+		Id = 6104994594,
+		DoFunc = function(module, TabsScrolling)
+			local selfMod = module
+			local TS = TabsScrolling
+			local env = getgenv()
+
+			local function TeleportSquad(squad)
+				local Squads = workspace.ActiveMapFolder.Map.Ships
+				local squad = Squads:WaitForChild(squad)
+				if squad then
+					local Spawns = squad.Spawns
+					local Child = Spawns:GetChildren()
+					local CasualSpawn = Child[math.random(1, #Child)
+					local char = game.Players.LocalPlayer
+					local root = char.HumanoidRootPart
+
+					root.CFrame = CasualSpawn.CFrame
+				end
+			end
+
+			selfMod:AddBTN(TS, "Teleport Green", function()
+				TeleportSquad("Green")
+			end)
+
+			selfMod:AddBTN(TS, "Teleport Yellow", function()
+				TeleportSquad("Yellow")
+			end)
+
+			selfMod:AddBTN(TS, "Teleport Red", function()
+				TeleportSquad("Red")
+			end)
+
+			selfMod:AddBTN(TS, "Teleport Blue" function()
+				TeleportSquad("Blue")
+			end)
+
+			selfMod:AddBTN(TS, "Teleport Orange", function()
+				TeleportSquad("Orange")
+			end)
+		end
 	}
 }
 
