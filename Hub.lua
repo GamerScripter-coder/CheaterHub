@@ -656,6 +656,7 @@ if env and success then
 env.AutoRejoin = false
 end
 local AutoRejoin = env.AutoRejoin or false
+local UIS = game:GetService("UserInputService")
 
 local function write(file, txt)
 	pcall(function()
@@ -721,6 +722,16 @@ function UIModule:AddTG(tab, TGtxt, current, callback)
 		updateUI()
 		callback(state)
 	end)
+end
+
+function UIModule:AddKeybind(keybind, callback)
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+if gameProcessed then return end
+
+if input.KeyCode == keybind then
+	callback()
+end
+end)
 end
 
 function UIModule:AddGT(tab, GtTxt, gameId)
