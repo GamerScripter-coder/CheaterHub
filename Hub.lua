@@ -832,6 +832,11 @@ function UIModule:AddGame(id)
         -- Filtriamo solo le tabelle per evitare l'errore "index function with Id"
         if type(g) == "table" and g.Id then
             selfM:AddGameChecker(g.Id, id, function()
+				if env[tostring(game.PlaceId)].Disconnect then
+					env[tostring(game.PlaceId)].Disconnect = true
+					task.wait(0.5)
+					env[tostring(game.PlaceId)].Disconnect = false
+				end
                 g.DoFunc(selfM, TabsScrolling)
                 foundGame = true
             end)
