@@ -258,6 +258,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 
 			selfMod:AddTG(TS, "Auto Admin", env.AutoAdmin, function(v)
 				AutoAdmin = v
+				env.AutoAdmin = v
 				if AutoAdmin == true then
 					AdminConnection = RunService.Heartbeat:Connect(function()
 						local char = game.Players.LocalPlayer.Character
