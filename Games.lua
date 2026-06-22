@@ -7,6 +7,27 @@ local Games = {
 			local TS = TabsScrolling
 			local env = getgenv()
 
+			local Connections = {}
+
+-- Aggiunge una connessione alla lista (es. Heartbeat, ChildAdded, ecc.)
+local function AddConnection(conn)
+    table.insert(Connections, conn)
+end
+
+-- Disconnette tutte le connessioni salvate e svuota la tabella
+local function DisconnectConnections()
+    for i, conn in ipairs(Connections) do
+        if conn then
+            pcall(function()
+                conn:Disconnect()
+            end)
+        end
+    end
+    -- Svuota la tabella per ricominciare da zero
+    Connections = {}
+end
+
+
 			--// Services
             local Players = game:GetService("Players")
             local RunService = game:GetService("RunService")
@@ -24,19 +45,20 @@ local Games = {
 
 			local TVM = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/Infinite-Health-Script/refs/heads/main/parseNumber%40StringsModule.lua", true))()
 
-			env.FakeStrength = env.FakeStrength or false
-			env.FakeMoney = env.FakeMoney or false
-			env.ClickX2Speed = env.ClickX2Speed or false
-			env.LastHealth = env.LastHealth or 0
-			env.SettedLastHealth = env.SettedLastHealth or false
-			env.Invincible = env.Invincible or false
+			env[tostring(game.PlaceId)].FakeStrength = env[tostring(game.PlaceId)].FakeStrength or false
+			env[tostring(game.PlaceId)].FakeMoney = env[tostring(game.PlaceId)].FakeMoney or false
+			env[tostring(game.PlaceId)].ClickX2Speed = env[tostring(game.PlaceId)].ClickX2Speed or false
+			env[tostring(game.PlaceId)].LastHealth = env[tostring(game.PlaceId)].LastHealth or 0
+			env[tostring(game.PlaceId)].SettedLastHealth = env[tostring(game.PlaceId)].SettedLastHealth or false
+			env[tostring(game.PlaceId)].Invincible = env[tostring(game.PlaceId)].Invincible or false
+			env[tostring(game.PlaceId)].Disconnect = false
 
-			local FakeStrength = env.FakeStrength or false
-            local FakeMoney = env.FakeMoney or false
-            local ClickX2Speed = env.ClickX2Speed or false
-            local LastHealth = env.LastHealth or 0
-            local SettedLastHealth = env.SettedLastHealth or false
-			local Invincible = env.Invincible or false
+			local FakeStrength = env[tostring(game.PlaceId)].FakeStrength or false
+            local FakeMoney = env[tostring(game.PlaceId)].FakeMoney or false
+            local ClickX2Speed = env[tostring(game.PlaceId)].ClickX2Speed or false
+            local LastHealth = env[tostring(game.PlaceId)].LastHealth or 0
+            local SettedLastHealth = env[tostring(game.PlaceId)].SettedLastHealth or false
+			local Invincible = env[tostring(game.PlaceId)].Invincible or false
 
 local function Do(func)
 	return func()
@@ -179,6 +201,9 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 	end
 			end)
 
+			AddConnection(x2Connection)
+			AddConnection(RunSx2)
+
 			local BossesConn
             local HealthConn
 
@@ -197,6 +222,8 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 
 		 player.Character.HumanoidRootPart.CFrame = PrimaryPart.CFrame
 	  end)
+
+	AddConnection(BossesConn)
 	  
 	HealthConn = RunService.Heartbeat:Connect(function()
 	   local char = player.Character
@@ -234,6 +261,15 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 	  end
    end
 			end)
+
+			AddConnection(HealthConn)
+
+			while true do
+				if env[tostring(game.PlaceId)].Disconnect == true then
+					DisconnectConnections()
+				end
+				task.wait(0.1)
+			end
 		end
 	},
 	["Be An Admin"] = {
@@ -244,15 +280,37 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local TS = TabsScrolling
 			local env = getgenv()
 
+			local Connections = {}
+
+-- Aggiunge una connessione alla lista (es. Heartbeat, ChildAdded, ecc.)
+local function AddConnection(conn)
+    table.insert(Connections, conn)
+end
+
+-- Disconnette tutte le connessioni salvate e svuota la tabella
+local function DisconnectConnections()
+    for i, conn in ipairs(Connections) do
+        if conn then
+            pcall(function()
+                conn:Disconnect()
+            end)
+        end
+    end
+    -- Svuota la tabella per ricominciare da zero
+    Connections = {}
+end
+
+
 			local Bases = workspace:WaitForChild("Bases")
 			local AdminBase = Bases:WaitForChild("Admin")
 			local ClaimPart = AdminBase.Claim.Touch
 
 			local RunService = game:GetService("RunService")
 
-			env.AutoAdmin = env.AutoAdmin or false
+			env[tostring(game.PlaceId)].AutoAdmin = env[tostring(game.PlaceId)].AutoAdmin or false
+			env[tostring(game.PlaceId)].Disconnect = false
 
-			local AutoAdmin = env.AutoAdmin or false
+			local AutoAdmin = env[tostring(game.PlaceId)].AutoAdmin or false
 
 			local AdminConnection
 
@@ -266,6 +324,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 
 						root.CFrame = ClaimPart.CFrame
 					end)
+					AddConnection(AdminConnection)
 				end
 				if AutoAdmin == false then
 					if AdminConnection then
@@ -273,6 +332,13 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 					end
 				end
 			end)
+
+			while true do
+				if env[tostring(game.PlaceId)].Disconnect == true then
+					DisconnectConnections()
+				end
+				task.wait(0.1)
+			end
 	    end
 	},
 	["Pilfering Pirates"] = {
