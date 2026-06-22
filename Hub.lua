@@ -5,6 +5,9 @@ local selfM = UIModule
 local G2L = {};
 
 -- StarterGui.MMSGHub
+if game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("MMSGHub") then
+	game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("MMSGHub"):Destroy()
+end
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 G2L["1"]["Name"] = [[MMSGHub]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
