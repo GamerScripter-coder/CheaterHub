@@ -266,6 +266,11 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 						root.CFrame = ClaimPart.CFrame
 					end)
 				end
+				if AutoAdmin == false then
+					if AdminConnection then
+						AdminConnection:Disconnect()
+					end
+				end
 			end)
 	    end
 	}
