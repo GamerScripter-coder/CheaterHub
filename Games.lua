@@ -3,8 +3,7 @@ local Games = {
 		Name = "Lucky Block Rush",
 		Id = 84575720768520,
 		DoFunc = function(module, TabsScrolling)
-			Games:DoFunction(function()
-							local selfMod = module
+			local selfMod = module
 			local TS = TabsScrolling
 			local env = getgenv()
 
@@ -235,14 +234,12 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 	  end
    end
 			end)
-			end)
 		end
 	},
 	["Be An Admin"] = {
 		Name = "Be An Admin",
 		Id = 79462658240386,
 		DoFunc = function(module, TabsScrolling)
-			Games:DoFunction(function()
 			local selfMod = module
 			local TS = TabsScrolling
 			local env = getgenv()
@@ -274,7 +271,6 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 						AdminConnection:Disconnect()
 					end
 				end
-			end)
 			end)
 	    end
 	}
