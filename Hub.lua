@@ -824,10 +824,12 @@ function UIModule:AddGame(id)
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
 	local Game
 	for _, g in pairs(Games) do
+		if g.Id then
         selfM:AddGameChecker(g.Id, id, function()
             g.DoFunc(selfM, TabsScrolling)
 			Game = g
         end)
+		end
     end
 	
 	if not Game then
