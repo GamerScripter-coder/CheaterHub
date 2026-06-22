@@ -267,6 +267,6 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 					end)
 				end
 			end)
-	    end)
+	    end
 	}
 }
