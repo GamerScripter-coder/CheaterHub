@@ -277,8 +277,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 	}
 }
 
-function Games:DoFunction(func)
-	func()
+function Games:GetGame(name)
+	return Games[name] or nil
 end
-
 return Games
