@@ -369,5 +369,4 @@ end
 			ToggleFollow()
 		end)
 		end)
-	}
 }
