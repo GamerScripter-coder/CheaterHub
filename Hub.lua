@@ -828,15 +828,25 @@ function UIModule:AddGame(id)
     local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true ))()
     local foundGame = false
     
+    -- Recuperiamo il PlaceId come stringa per usarlo come chiave
+    local pId = tostring(game.PlaceId)
+    
     for _, g in pairs(GamesData) do
-        -- Filtriamo solo le tabelle per evitare l'errore "index function with Id"
         if type(g) == "table" and g.Id then
             selfM:AddGameChecker(g.Id, id, function()
-				if env[tostring(game.PlaceId)].Disconnect then
-					env[tostring(game.PlaceId)].Disconnect = true
-					task.wait(0.5)
-					env[tostring(game.PlaceId)].Disconnect = false
-				end
+                -- Inizializziamo la tabella del gioco in env se non esiste
+                if not env[pId] then 
+                    env[pId] = {} 
+                end
+                
+                -- Sistema di reset connessioni/loop
+                if env[pId].Disconnect ~= nil then
+                    env[pId].Disconnect = true
+                    task.wait(0.5)
+                end
+                env[pId].Disconnect = false
+                
+                -- Avvio delle funzioni del gioco
                 g.DoFunc(selfM, TabsScrolling)
                 foundGame = true
             end)
