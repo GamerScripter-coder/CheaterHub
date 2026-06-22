@@ -29,12 +29,14 @@ return {
 			env.ClickX2Speed = false
 			env.LastHealth = 0
 			env.SettedLastHealth = false
+			env.Invincible = false
 
 			local FakeStrength = env.FakeStrength or false
             local FakeMoney = env.FakeMoney or false
             local ClickX2Speed = env.ClickX2Speed or false
             local LastHealth = env.LastHealth or 0
             local SettedLastHealth = env.SettedLastHealth or false
+			local Invincible = env.Invincible or false
 
 local function Do(func)
 	return func()
@@ -122,7 +124,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local x2Connection
             local RunSx2
 
-			selfMod:AddTG(TS, "Click x2Speed Visibility", function(v)
+			selfMod:AddTG(TS, "Click x2Speed Visibility", env.ClickX2Speed, function(v)
 				ClickX2Speed = v
 
 	if v then
@@ -180,7 +182,8 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local BossesConn
             local HealthConn
 
-			selfMod:AddTG(TS, "InvincibleWithBosses", function(v)
+			selfMod:AddTG(TS, "InvincibleWithBosses", env.Invincible, function(v)
+				Invincible = v
 				if v == true then
       BossesConn = BossesFolder.ChildAdded:Connect(function(child)
 	     local PrimaryPart = child.PrimaryPart
