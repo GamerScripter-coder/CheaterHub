@@ -726,8 +726,8 @@ function UIModule:AddGT(tab, GtTxt, gameId)
 	end)
 end
 
-function UIModule:AddGameChecker(gameid, callback)
-	if game.PlaceId == gameid then
+function UIModule:AddGameChecker(place1, place2, callback)
+	if place1 == place2 then
 		callback()
 	end
 end
@@ -802,7 +802,7 @@ function UIModule:AddGame(id)
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
 	local Game
 	for _, g in pairs(Games) do
-        selfM:AddGameChecker(id, function()
+        selfM:AddGameChecker(g.Id, id, function()
             g.DoFunc(selfM, TabsScrolling)
             Game = g
         end)
