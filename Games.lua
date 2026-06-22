@@ -236,4 +236,37 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			end)
 		end
 	},
+	["Be An Admin"] = {
+		Name = "Be An Admin",
+		Id = 79462658240386,
+		DoFunc = function(module, TabsScrolling)
+			local selfMod = module
+			local TS = TabsScrolling
+			local env = getgenv()
+
+			local Bases = workspace:WaitForChild("Bases")
+			local AdminBase = Bases:WaitForChild("Admin")
+			local ClaimPart = AdminBase.Claim.Touch
+
+			local RunService = game:GetService("RunService")
+
+			env.AutoAdmin = false
+
+			local AutoAdmin = env.AutoAdmin or false
+
+			local AdminConnection
+
+			selfMod:AddTG(TS, "Auto Admin", env.AutoAdmin, function(v)
+				AutoAdmin = v
+				if AutoAdmin == true then
+					AdminConnection = RunService.Heartbeat:Connect(function()
+						local char = game.Players.LocalPlayer.Character
+						local root = char.HumanoidRootPart
+
+						root.CFrame = ClaimPart.CFrame
+					end)
+				end
+			end)
+	    end)
+	}
 }
