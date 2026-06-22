@@ -761,29 +761,43 @@ end
 
 function UIModule:AddSettings()
 	selfM:Refresh(TabsScrolling)
-	
-	selfM:AddTG(TabsScrolling, "Auto Rejoin(on kick)", env.AutoRejoin, function(v)
-		AutoRejoin = v
-		if AutoRejoin then
-		local GuiService = game:GetService("GuiService")
-		local Players = game:GetService("Players")
-		local TeleportService = game:GetService("TeleportService")
-		
 
-		local player = Players.LocalPlayer
+	local Players = game:GetService("Players")
+	local TeleportService = game:GetService("TeleportService")
+	local GuiService = game:GetService("GuiService")
 
-		local function onErrorMessageChanged(errorMessage)
-			if errorMessage and errorMessage ~= "" and AutoRejoin then
-				print("Error detected: " .. errorMessage)
+	local player = Players.LocalPlayer
 
-				if player then
-					wait()
-					TeleportService:Teleport(game.PlaceId, player)
-				end
+	if env.AutoRejoin == nil then
+		env.AutoRejoin = false
+	end
+
+	local conn
+
+	selfM:AddTG(TabsScrolling, "Auto Rejoin (on kick)", env.AutoRejoin, function(state)
+		env.AutoRejoin = state
+
+		if state then
+			-- evita doppie connessioni
+			if conn then
+				conn:Disconnect()
+				conn = nil
 			end
-		end
 
-		GuiService.ErrorMessageChanged:Connect(onErrorMessageChanged)
+			conn = GuiService.ErrorMessageChanged:Connect(function(msg)
+				if env.AutoRejoin and msg and msg ~= "" then
+					task.wait(1)
+					pcall(function()
+						TeleportService:Teleport(game.PlaceId, player)
+					end)
+				end
+			end)
+
+		else
+			if conn then
+				conn:Disconnect()
+				conn = nil
+			end
 		end
 	end)
 end
