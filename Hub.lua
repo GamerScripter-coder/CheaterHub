@@ -724,16 +724,6 @@ function UIModule:AddTG(tab, TGtxt, current, callback)
 	end)
 end
 
-function UIModule:AddKeybind(keybind, callback)
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-if gameProcessed then return end
-
-if input.KeyCode == keybind then
-	callback()
-end
-end)
-end
-
 function UIModule:AddGT(tab, GtTxt, gameId)
 	local clone = GameTeleporter:Clone()
 	clone.Parent = tab
@@ -859,6 +849,8 @@ function UIModule:AddUniversalCheats()
 	selfM:AddBTN(TabsScrolling, "Infinite Yield", function()
 		exstr("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 	end)
+
+	selfM:AddLabel("Version: 1.0.0")
 end
 
 function UIModule:AddCredits()
