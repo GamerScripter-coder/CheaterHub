@@ -815,8 +815,7 @@ function UIModule:AddGames()
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
 	for name, Game in pairs(Games) do
 		local veryGame = Games:GetGame(name)
-		task.wait()
-		selfM:AddGT(TabsScrolling, Game.Name, Game.Id)
+		selfM:AddGT(TabsScrolling, veryGame.Name, veryGame.Id)
 	end
 end
 
