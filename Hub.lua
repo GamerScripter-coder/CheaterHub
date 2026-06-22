@@ -916,6 +916,10 @@ for _,btn in pairs(Tabs:GetChildren()) do
 	end
 end
 
+if queue_on_teleport then
+	queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua", true))()')
+end
+
 local UIS = game:GetService("UserInputService")
 
 local MainFrame = G2L["2"]
