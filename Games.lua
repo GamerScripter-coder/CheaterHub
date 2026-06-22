@@ -289,7 +289,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 				if squad then
 					local Spawns = squad.Spawns
 					local Child = Spawns:GetChildren()
-					local CasualSpawn = Child[math.random(1, #Child)
+					local CasualSpawn = Child[math.random(1, #Child)]
 					local char = game.Players.LocalPlayer
 					local root = char.HumanoidRootPart
 
@@ -317,7 +317,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 				TeleportSquad("Orange")
 			end)
 		end
-	}
+	},
 }
 
 function Games:GetGame(name)
