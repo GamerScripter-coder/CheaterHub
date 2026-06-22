@@ -687,12 +687,12 @@ function UIModule:AddBTN(tab, Btntxt, callback)
 	clone.MouseButton1Click:Connect(callback)
 end
 
-function UIModule:AddTG(tab, TGtxt, callback)
+function UIModule:AddTG(tab, TGtxt, callback, current)
 	local clone = TabTG:Clone()
 	clone.txt.Text = TGtxt
 	clone.Parent = tab
 
-	local state = false
+	local state = current or false
 
 	local function updateUI()
 		if state then
