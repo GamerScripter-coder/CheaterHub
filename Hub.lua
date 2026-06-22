@@ -652,6 +652,9 @@ local Label = Templates.Label
 local success, env = pcall(function()
 	return getgenv()
 end)
+if env and success then
+env.AutoRejoin = false
+end
 local AutoRejoin = env.AutoRejoin or false
 
 local function write(file, txt)
@@ -710,6 +713,7 @@ function UIModule:AddTG(tab, TGtxt, current, callback)
 	end
 
 	updateUI()
+	callback(state)
 
 	clone.MouseButton1Click:Connect(function()
 		state = not state
@@ -758,7 +762,7 @@ end
 function UIModule:AddSettings()
 	selfM:Refresh(TabsScrolling)
 	
-	selfM:AddTG(TabsScrolling, "Auto Rejoin(on kick)", function(v)
+	selfM:AddTG(TabsScrolling, "Auto Rejoin(on kick)", env.AutoRejoin, function(v)
 		AutoRejoin = v
 		if AutoRejoin then
 		local GuiService = game:GetService("GuiService")
