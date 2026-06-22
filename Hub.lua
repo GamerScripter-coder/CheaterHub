@@ -810,33 +810,39 @@ function UIModule:AddHome()
 end
 
 function UIModule:AddGames()
-	selfM:Refresh(TabsScrolling)
-	
-	local GamesTable = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
-for key, gameData in pairs(GamesTable) do
-    -- Controlliamo che l'elemento sia una tabella e che non sia la funzione GetGame
-    if type(gameData) == "table" and gameData.Name and gameData.Id then
-        selfM:AddGT(TabsScrolling, gameData.Name, gameData.Id)
+    selfM:Refresh(TabsScrolling)
+    
+    local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true ))()
+    
+    for _, g in pairs(GamesData) do
+        -- Controlliamo che sia una tabella (un gioco) e non una funzione
+        if type(g) == "table" and g.Name and g.Id then
+            selfM:AddGT(TabsScrolling, g.Name, g.Id)
+        end
     end
-end
 end
 
 function UIModule:AddGame(id)
-	selfM:Refresh(TabsScrolling)
-	
-	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
-	local Game
-	for name, g in pairs(Games) do
-        selfM:AddGameChecker(g.Id, id, function()
-            g.DoFunc(selfM, TabsScrolling)
-			Game = g
-        end)
+    selfM:Refresh(TabsScrolling)
+    
+    local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true ))()
+    local foundGame = false
+    
+    for _, g in pairs(GamesData) do
+        -- Filtriamo solo le tabelle per evitare l'errore "index function with Id"
+        if type(g) == "table" and g.Id then
+            selfM:AddGameChecker(g.Id, id, function()
+                g.DoFunc(selfM, TabsScrolling)
+                foundGame = true
+            end)
+        end
     end
-	
-	if not Game then
-		selfM:AddLabel("This Game is not Supported: "..GetGameName(game.PlaceId).."")
-	end
+    
+    if not foundGame then
+        selfM:AddLabel("This Game is not Supported: "..GetGameName(game.PlaceId))
+    end
 end
+
 
 function UIModule:AddUniversalCheats()
 	selfM:Refresh(TabsScrolling)
