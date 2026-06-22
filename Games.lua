@@ -290,7 +290,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 					local Spawns = squad.Spawns
 					local Child = Spawns:GetChildren()
 					local CasualSpawn = Child[math.random(1, #Child)]
-					local char = game.Players.LocalPlayer
+					local char = game.Players.LocalPlayer.Character
 					local root = char.HumanoidRootPart
 
 					root.CFrame = CasualSpawn.CFrame
