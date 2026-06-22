@@ -853,7 +853,7 @@ function UIModule:AddUniversalCheats()
 		exstr("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 	end)
 
-	selfM:AddLabel("Version: 1.0.7")
+	selfM:AddLabel("Version: 1.0.8")
 end
 
 function UIModule:AddCredits()
