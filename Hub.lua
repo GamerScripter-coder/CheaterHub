@@ -814,6 +814,8 @@ function UIModule:AddGames()
 	
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
 	for name, Game in pairs(Games) do
+		local veryGame = Games:GetGame(name)
+		task.wait()
 		selfM:AddGT(TabsScrolling, Game.Name, Game.Id)
 	end
 end
@@ -823,7 +825,7 @@ function UIModule:AddGame(id)
 	
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
 	local Game
-	for _, g in pairs(Games) do
+	for name, g in pairs(Games) do
         selfM:AddGameChecker(g.Id, id, function()
             g.DoFunc(selfM, TabsScrolling)
 			Game = g
