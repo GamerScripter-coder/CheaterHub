@@ -316,6 +316,10 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			selfMod:AddBTN(TS, "Teleport Orange", function()
 				TeleportSquad("Orange")
 			end)
+
+			selfMod:AddBTN(TS, "Teleport Purple", function()
+				TeleportSquad("Purple")
+			end)
 		end
 	},
 }
