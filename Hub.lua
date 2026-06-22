@@ -812,11 +812,13 @@ end
 function UIModule:AddGames()
 	selfM:Refresh(TabsScrolling)
 	
-	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
-	for name, Game in pairs(Games) do
-		local veryGame = Games:GetGame(name)
-		selfM:AddGT(TabsScrolling, veryGame.Name, veryGame.Id)
-	end
+	local GamesTable = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
+for key, gameData in pairs(GamesTable) do
+    -- Controlliamo che l'elemento sia una tabella e che non sia la funzione GetGame
+    if type(gameData) == "table" and gameData.Name and gameData.Id then
+        selfM:AddGT(TabsScrolling, gameData.Name, gameData.Id)
+    end
+end
 end
 
 function UIModule:AddGame(id)
