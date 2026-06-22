@@ -3,6 +3,7 @@ return {
 		Name = "Lucky Block Rush",
 		Id = 84575720768520,
 		DoFunc = function(module, TabsScrolling)
+			print(module, TabsScrolling)
 			local selfMod = module
 			local TS = TabsScrolling
 			local env = getgenv()
