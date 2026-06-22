@@ -868,4 +868,56 @@ for _,btn in pairs(Tabs:GetChildren()) do
 	end
 end
 
+local UIS = game:GetService("UserInputService")
+
+local MainFrame = G2L["2"]
+local TopBar = G2L["4"]
+
+local Dragging = false
+local DragStart
+local StartPos
+
+local function Update(Input)
+	local Delta = Input.Position - DragStart
+
+	MainFrame.Position = UDim2.new(
+		StartPos.X.Scale,
+		StartPos.X.Offset + Delta.X,
+		StartPos.Y.Scale,
+		StartPos.Y.Offset + Delta.Y
+	)
+end
+
+TopBar.InputBegan:Connect(function(Input)
+	if Input.UserInputType == Enum.UserInputType.MouseButton1
+	or Input.UserInputType == Enum.UserInputType.Touch then
+
+		Dragging = true
+		DragStart = Input.Position
+		StartPos = MainFrame.Position
+
+		Input.Changed:Connect(function()
+			if Input.UserInputState == Enum.UserInputState.End then
+				Dragging = false
+			end
+		end)
+	end
+end)
+
+TopBar.InputChanged:Connect(function(Input)
+	if Input.UserInputType == Enum.UserInputType.MouseMovement
+	or Input.UserInputType == Enum.UserInputType.Touch then
+		DragInput = Input
+	end
+end)
+
+UIS.InputChanged:Connect(function(Input)
+	if Dragging and (
+		Input.UserInputType == Enum.UserInputType.MouseMovement
+		or Input.UserInputType == Enum.UserInputType.Touch
+	) then
+		Update(Input)
+	end
+end)
+
 return UIModule
