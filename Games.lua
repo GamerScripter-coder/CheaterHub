@@ -24,12 +24,12 @@ local Games = {
 
 			local TVM = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/Infinite-Health-Script/refs/heads/main/parseNumber%40StringsModule.lua", true))()
 
-			env.FakeStrength = false
-			env.FakeMoney = false
-			env.ClickX2Speed = false
-			env.LastHealth = 0
-			env.SettedLastHealth = false
-			env.Invincible = false
+			env.FakeStrength = env.FakeStrength or false
+			env.FakeMoney = env.FakeMoney or false
+			env.ClickX2Speed = env.ClickX2Speed or false
+			env.LastHealth = env.LastHealth or 0
+			env.SettedLastHealth = env.SettedLastHealth or false
+			env.Invincible = env.Invincible or false
 
 			local FakeStrength = env.FakeStrength or false
             local FakeMoney = env.FakeMoney or false
@@ -250,7 +250,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 
 			local RunService = game:GetService("RunService")
 
-			env.AutoAdmin = false
+			env.AutoAdmin = env.AutoAdmin or false
 
 			local AutoAdmin = env.AutoAdmin or false
 
