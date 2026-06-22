@@ -802,12 +802,10 @@ function UIModule:AddGame(id)
 	local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true))()
 	local Game
 	for name, g in pairs(Games) do
-		if g.DoFunc then
-			selfM:AddGameChecker(id, function()
-				g.DoFunc(selfM, TabsScrolling)
-			end)
+		selfM:AddGameChecker(id, function()
+			g.DoFunc(selfM, TabsScrolling)
 			Game = g
-		end
+		end)
 	end
 	if not Game then
 		selfM:AddLabel("This Game is not Supported: "..GetGameName(game.PlaceId).."")
