@@ -690,7 +690,7 @@ function UIModule:AddBTN(tab, Btntxt, callback)
 	clone.MouseButton1Click:Connect(callback)
 end
 
-function UIModule:AddTG(tab, TGtxt, callback, current)
+function UIModule:AddTG(tab, TGtxt, current, callback)
 	local clone = TabTG:Clone()
 	clone.txt.Text = TGtxt
 	clone.Parent = tab
