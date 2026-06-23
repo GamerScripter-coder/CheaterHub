@@ -458,7 +458,7 @@ end
 							prox.HoldDuration = 0
 							fireproxmityprompt(prox)
 							task.wait(0.5)
-							root.CFrame = StartPos
+							root.CFrame = VeryStartPos
 						end
 						end
 
