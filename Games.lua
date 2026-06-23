@@ -63,6 +63,17 @@ end
             local SettedLastHealth = env[tostring(game.PlaceId)].SettedLastHealth or false
 			local Invincible = env[tostring(game.PlaceId)].Invincible or false
 
+			if readsuccess then
+				local data = game:GetService("HttpService"):JSONDecode(read)
+
+				FakeStrength = data.FakeStrength
+			    FakeMoney = data.FakeMoney
+				ClickX2Speed = data.ClickX2Speed
+				LastHealth = data.LastHealth
+				SettedLastHealth = data.SettedLastHealth
+				Invincible = data.Invincible
+			end
+
 local function Do(func)
 	return func()
 end
@@ -149,7 +160,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local x2Connection
             local RunSx2
 
-			selfMod:AddTG(TS, "Click x2Speed Visibility", env.ClickX2Speed, function(v)
+			selfMod:AddTG(TS, "Click x2Speed Visibility", ClickX2Speed, function(v)
 				ClickX2Speed = v
 
 	if v then
@@ -210,7 +221,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local BossesConn
             local HealthConn
 
-			selfMod:AddTG(TS, "InvincibleWithBosses", env.Invincible, function(v)
+			selfMod:AddTG(TS, "InvincibleWithBosses", Invincible, function(v)
 				Invincible = v
 				if v == true then
       BossesConn = BossesFolder.ChildAdded:Connect(function(child)
@@ -327,9 +338,15 @@ end
 
 			local AutoAdmin = env[tostring(game.PlaceId)].AutoAdmin or false
 
+			if readsuccess then
+				local data = game:GetService("HttpService"):JSONDecode(read)
+
+				AutoAdmin = data.AutoAdmin
+			end
+
 			local AdminConnection
 
-			selfMod:AddTG(TS, "Auto Admin", env.AutoAdmin, function(v)
+			selfMod:AddTG(TS, "Auto Admin", AutoAdmin, function(v)
 				AutoAdmin = v
 				env.AutoAdmin = v
 				if AutoAdmin == true then
@@ -447,6 +464,7 @@ end
 
 			env[tostring(game.PlaceId)].AutoPlayAndTP = false
 			env[tostring(game.PlaceId)].AutoCollect = false
+			env[tostring(game.PlaceId)].Disconnect = false
 
 			local AutoPlayAndTP = env[tostring(game.PlaceId)].AutoPlayAndTP or false
 			local AutoPlayConn
@@ -455,7 +473,14 @@ end
 			local AutoConn
 			local AlrAutoCollect = false
 
-			selfMod:AddTG(TS, "Auto Play and Teleport End", env[tostring(game.PlaceId)].AutoPlayAndTP, function(v)
+			if readsuccess then
+				local data = game:GetService("HttpService"):JSONDecode(read)
+
+				AutoPlayAndTP = data.AutoPlayAndTP
+				AutoCollect = data.AutoCollect
+			end
+
+			selfMod:AddTG(TS, "Auto Play and Teleport End", AutoPlayAndTP, function(v)
 				AutoPlayAndTP = v
 				if v == true then
 					AutoPlayConn = RunService.Heartbeat:Connect(function()
@@ -499,7 +524,7 @@ end
 				end
 			end)
 
-			selfMod:AddTG(TS, "Auto Collect Money", env[tostring(game.PlaceId)].AutoCollect, function(v)
+			selfMod:AddTG(TS, "Auto Collect Money", AutoCollect, function(v)
 				AutoCollect = v
 				if v == true then
 					AutoConn = RunService.Heartbeat:Connect(function()
