@@ -425,10 +425,14 @@ end
 			local RunService = game:GetService("RunService")
 
 			env[tostring(game.PlaceId)].AutoPlayAndTP = false
+			env[tostring(game.PlaceId)].AutoCollect = false
 
 			local AutoPlayAndTP = env[tostring(game.PlaceId)].AutoPlayAndTP or false
 			local AutoPlayConn
-			local AlrAutoPlaying
+			local AlrAutoPlaying = false
+			local AutoCollect = env[tostring(game.PlaceId)].AutoCollect or false
+			local AutoConn
+			local AlrAutoCollect = false
 
 			selfMod:AddTG(TS, "Auto Play and Teleport End", env[tostring(game.PlaceId)].AutoPlayAndTP, function(v)
 				AutoPlayAndTP = v
@@ -470,6 +474,35 @@ end
 					if AutoPlayConn then
 						AutoPlayConn:Disconnect()
 						AutoPlayConn = nil
+					end
+				end
+			end)
+
+			selfMod:AddTG(TS, "Auto Collect Money", env[tostring(game.PlaceId)].AutoCollect, function(v)
+				AutoCollect = v
+				if v == true then
+					AutoConn = RunService.Heartbeat:Connect(function()
+						if AlrAutoCollect == true then return end
+						AlrAutoCollect = false
+						local plr = game.Players.LocalPlayer
+						local base = workspace.Plots:FindFirstChild(plr.Name)
+						local Slots = base.AnimalStands
+						for _,slot in pairs(Slots:GetChildren()) do
+							local Collect = slot.Collect
+							local Main = Collect.Main
+							local TouchInterest = Main.TouchInterest
+							firetouchinterest(plr.Character.Head, Main, true)
+							task.wait(0.5)
+							firetouchinterest(plr.Character.Head, Main, false)
+						end
+						AlrAutoCollect = false
+					end)
+					AddConnection(AutoConn)
+			    end
+				if v == false then
+					if AutoConn then
+						AutoConn:Disconnect()
+						AutoConn = nil
 					end
 				end
 			end)
