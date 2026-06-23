@@ -626,10 +626,12 @@ end
 						local Slots = base.Buttons
 						local char = plr.Character
 						for _,slot in pairs(Slots:GetChildren()) do
-							local TouchInterest = slot.TouchInterest
+							local TouchInterest = slot:FindFirstChild("TouchInterest")
+							if TouchInterest then
 							firetouchinterest(char.Head, slot, 0)
 							task.wait(0.5)
 							firetouchinterest(char.Head, slot, 1)
+							end
 						end
 					end)
 					AddConnection(AutoConn)
