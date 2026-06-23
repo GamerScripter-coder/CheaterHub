@@ -388,6 +388,89 @@ end
 			end)
 		end
 	},
+	["Become a Brainrot"] = {
+		Name = "Become a Brainrot",
+		Id = 99255447043899,
+		DoFunc = function(module, TabsScrolling)
+			local selfMod = module
+			local TS = TabsScrolling
+			local env = getgenv()
+
+						local Connections = {}
+
+-- Aggiunge una connessione alla lista (es. Heartbeat, ChildAdded, ecc.)
+local function AddConnection(conn)
+    table.insert(Connections, conn)
+end
+
+-- Disconnette tutte le connessioni salvate e svuota la tabella
+local function DisconnectConnections()
+    for i, conn in ipairs(Connections) do
+        if conn then
+            pcall(function()
+                conn:Disconnect()
+            end)
+        end
+    end
+    -- Svuota la tabella per ricominciare da zero
+    Connections = {}
+end
+
+			local StartPos = CFrame.new(131, 3, -39)
+			local EndPart = workspace.Locations.End.SpawnPosition
+			local VeryStartPos = CFrame.new(48, 3, 3)
+			local EndBase = workspace.Locations.End
+			local EndBrainrots = EndBase.Brainrots
+			local EndSpawnPoint = EndBase.SpawnPosition
+			local RunService = game:GetService("RunService")
+
+			env[tostring(game.PlaceId)].AutoPlayAndTP = false
+
+			local AutoPlayAndTP = env[tostring(game.PlaceId)].AutoPlayAndTP or false
+			local AutoPlayConn
+			local AlrAutoPlaying
+
+			selfMod:AddTG(TS, "Auto Play and Teleport End", env[tostring(game.PlaceId)].AutoPlayAndTP, function(v)
+				AutoPlayAndTP = v
+				if v == true then
+					AutoPlayConn = RunService.Heartbeat:Connect(function()
+						if AlrAutoPlaying == true then return end
+						AlrAutoPlaying = true
+
+						local char = game.Players.LocalPlayer.Character
+						local root = char.HumanoidRootPart
+
+						root.CFrame = VeryStartPos
+						task.wait(0.5)
+						root.CFrame = EndSpawnPoint.CFrame
+						task.wait(3)
+						local brainrots = EndBrainrots:GetChildren()
+						local casual = brainrots[math.random(1, #brainrots)]
+						local casualroot = casual.PrimaryPart
+						local prox = casualroot:FindFirstChildOfClass("ProxmityPrompt")
+
+						if prox then
+							root.CFrame = casualroot.CFrame
+							task.wait(0.5)
+							prox.HoldDuration = 0
+							fireproxmityprompt(prox)
+							task.wait(0.5)
+							root.CFrame = StartPos
+						end
+
+						AlrAutoPlaying = false
+					end)
+					AddConnection(AutoPlayConn)
+				end
+				if v == false then
+					if AutoPlayConn then
+						AutoPlayConn:Disconnect()
+						AutoPlayConn = nil
+					end
+				end
+			end)
+		end
+	}
 }
 
 function Games:GetGame(name)
