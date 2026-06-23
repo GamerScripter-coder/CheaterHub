@@ -443,9 +443,12 @@ end
 						root.CFrame = StartPos
 						task.wait(0.5)
 						root.CFrame = EndSpawnPoint.CFrame
-						task.wait(3)
+						task.wait(5.5)
 						local brainrots = EndBrainrots:GetChildren()
-						local casual = brainrots[math.random(1, #brainrots)]
+						local success, casual = pcall(function()
+							return brainrots[math.random(1, #brainrots)]
+						end)
+						if success and casual then
 						local casualroot = casual.PrimaryPart
 						local prox = casualroot:FindFirstChildOfClass("ProxmityPrompt")
 
@@ -456,6 +459,7 @@ end
 							fireproxmityprompt(prox)
 							task.wait(0.5)
 							root.CFrame = StartPos
+						end
 						end
 
 						AlrAutoPlaying = false
