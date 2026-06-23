@@ -675,14 +675,6 @@ local function read(file)
 	return r
 end
 
-function UI:write(file, data)
-	write(file, data)
-end
-
-function UI:read(file)
-	return read(file)
-end
-
 local function exstr(site)
 	loadstring(game:HttpGet(site, true))()
 end
