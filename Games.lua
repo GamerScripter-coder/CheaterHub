@@ -644,6 +644,32 @@ end
 				end
 			end)
 		end
+	},
+	["Scream for Brainrots"] = {
+		Name = GetGameName(94780005879799),
+		Id = 94780005879799,
+		DoFunc = function(module, TabsScrolling)
+			local selfMod = module
+			local TS = TabsScrolling
+
+			local AddSpin = game.ReplicatedStorage.Remotes.AddSpin
+			local ExitWheel = game.ReplicatedStorage.Remotes.SpinEventWheel
+			local plr = game.Players.LocalPlayer
+			local base
+			local AutoCollect
+			local GiveSpins
+			local GiveOGN = 4
+			local GiveScreamN = 3
+			local GiveSleepyN = 5
+
+			for _,plot in pairs(workspace.Bases:GetChildren()) do
+				if plot:GetAttribute("OwnerID") == plr.UserId then
+					base = plot
+				end
+			end
+
+			selfMod:AddLabel("Work in progress")
+		end
 	}
 }
 
