@@ -278,7 +278,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 				SettedLastHealth = SettedLastHealth,
 				Invincible = Invincible
 			}
-					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata)
+					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
 				end
 				task.wait(0.1)
 			end
@@ -354,7 +354,7 @@ end
 					local savedata = {
 						AutoAdmin = AutoAdmin
 					}
-					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata)
+					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
 				end
 				task.wait(0.1)
 			end
@@ -535,7 +535,7 @@ end
 						AutoPlayAndTP = AutoPlayAndTP,
 						AutoCollect = AutoCollect
 					}
-					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata)
+					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
 				end
 				task.wait(0.1)
 			end
