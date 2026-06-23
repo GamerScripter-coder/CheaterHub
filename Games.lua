@@ -491,9 +491,9 @@ end
 							local Collect = slot.Collect
 							local Main = Collect.Main
 							local TouchInterest = Main.TouchInterest
-							firetouchinterest(plr.Character.Head, Main, true)
+							firetouchinterest(plr.Character.Head, Main, 0)
 							task.wait(0.5)
-							firetouchinterest(plr.Character.Head, Main, false)
+							firetouchinterest(plr.Character.Head, Main, 1)
 						end
 						AlrAutoCollect = false
 					end)
