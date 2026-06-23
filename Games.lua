@@ -184,6 +184,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			VirtualInputManager:SendMouseButtonEvent(centerX, centerY, 0, false, game, 1)
 		   end
 		end)
+		AddConnection(RunSx2)
 
 		x2Connection = X2Speed:GetPropertyChangedSignal("Visible"):Connect(function()
 			if not ClickX2Speed then return end
@@ -203,6 +204,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 				VirtualInputManager:SendMouseButtonEvent(centerX, centerY, 0, false, game, 1)
 			end
 		end)
+		AddConnection(x2Connection)
 	else
 		if x2Connection then
 			x2Connection:Disconnect()
@@ -214,9 +216,6 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 		end
 	end
 			end)
-
-			AddConnection(x2Connection)
-			AddConnection(RunSx2)
 
 			local BossesConn
             local HealthConn
@@ -500,13 +499,13 @@ end
 						end)
 						if success and casual then
 						local casualroot = casual.PrimaryPart
-						local prox = casualroot:FindFirstChildOfClass("ProxmityPrompt")
+						local prox = casualroot:FindFirstChildOfClass("ProximityPrompt")
 
 						if prox then
 							root.CFrame = casualroot.CFrame
 							task.wait(0.5)
 							prox.HoldDuration = 0
-							fireproxmityprompt(prox)
+							fireproximityprompt(prox)
 							task.wait(0.5)
 							root.CFrame = VeryStartPos
 						end
