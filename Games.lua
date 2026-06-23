@@ -6,6 +6,9 @@ local Games = {
 			local selfMod = module
 			local TS = TabsScrolling
 			local env = getgenv()
+			local readsuccess, read = pcall(function()
+				return readfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
+			end)
 
 			local Connections = {}
 
@@ -267,6 +270,15 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			while true do
 				if env[tostring(game.PlaceId)].Disconnect == true then
 					DisconnectConnections()
+					local savedata = {
+				FakeStrength = FakeStrength,
+				FakeMoney = FakeMoney,
+				ClickX2Speed = ClickX2Speed,
+				LastHealth = LastHealth,
+				SettedLastHealth = SettedLastHealth,
+				Invincible = Invincible
+			}
+					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata)
 				end
 				task.wait(0.1)
 			end
@@ -279,6 +291,9 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local selfMod = module
 			local TS = TabsScrolling
 			local env = getgenv()
+			local readsuccess, read = pcall(function()
+				return readfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
+			end)
 
 			local Connections = {}
 
@@ -336,6 +351,10 @@ end
 			while true do
 				if env[tostring(game.PlaceId)].Disconnect == true then
 					DisconnectConnections()
+					local savedata = {
+						AutoAdmin = AutoAdmin
+					}
+					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata)
 				end
 				task.wait(0.1)
 			end
@@ -395,7 +414,9 @@ end
 			local selfMod = module
 			local TS = TabsScrolling
 			local env = getgenv()
-
+			local readsuccess, read = pcall(function()
+				return readfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
+			end)
 						local Connections = {}
 
 -- Aggiunge una connessione alla lista (es. Heartbeat, ChildAdded, ecc.)
@@ -510,6 +531,11 @@ end
 			while true do
 				if env[tostring(game.PlaceId)].Disconnect == true then
 					DisconnectConnections()
+					local savedata = {
+						AutoPlayAndTP = AutoPlayAndTP,
+						AutoCollect = AutoCollect
+					}
+					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata)
 				end
 				task.wait(0.1)
 			end
