@@ -10,9 +10,17 @@ local function SaveConfig(placeId, savedata)
     writefile(folderPath .. "/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
 end
 
+local function GetGameName(id)
+   local MarketplaceService = game:GetService("MarketplaceService")
+	
+   local info = MarketplaceService:GetProductInfo(id)
+
+   return info.Name
+end
+
 local Games = {
 	["Lucky Block Rush"] = {
-		Name = "Lucky Block Rush",
+		Name = GetGameName(84575720768520),
 		Id = 84575720768520,
 		DoFunc = function(module, TabsScrolling)
 			local selfMod = module
@@ -373,7 +381,7 @@ selfMod:AddTG(TS, "Auto Admin", AutoAdmin, function(v)
 	    end
 	},
 	["Pilfering Pirates"] = {
-		Name = "Pilfering Pirates",
+		Name = GetGameName(6104994594),
 		Id = 6104994594,
 		DoFunc = function(module, TabsScrolling)
 			local selfMod = module
@@ -420,7 +428,7 @@ selfMod:AddTG(TS, "Auto Admin", AutoAdmin, function(v)
 		end
 	},
 	["Become a Brainrot"] = {
-		Name = "Become a Brainrot",
+		Name = GetGameName(99255447043899),
 		Id = 99255447043899,
 		DoFunc = function(module, TabsScrolling)
 			local selfMod = module
@@ -552,6 +560,87 @@ selfMod:AddTG(TS, "Auto Collect Money", AutoCollect, function(v)
 			end)
 
 
+		end
+	},
+	["Kick a Lucky Block"] = {
+		Name = GetGameName(89469502395769),
+		Id = 89469502395769,
+		DoFunc = function(module, TabsScrolling)
+			local selfMod = module
+			local TS = TabsScrolling
+			local env = getgenv()
+			local RunService = game:GetService("RunService")
+			local readsuccess, read = pcall(function()
+				return readfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
+			end)
+
+									local Connections = {}
+
+-- Aggiunge una connessione alla lista (es. Heartbeat, ChildAdded, ecc.)
+local function AddConnection(conn)
+    table.insert(Connections, conn)
+end
+
+-- Disconnette tutte le connessioni salvate e svuota la tabella
+local function DisconnectConnections()
+    for i, conn in ipairs(Connections) do
+        if conn then
+            pcall(function()
+                conn:Disconnect()
+            end)
+        end
+    end
+    -- Svuota la tabella per ricominciare da zero
+    Connections = {}
+end
+
+			local plr = game.Players.LocalPlayer
+			local base
+
+			env[tostring(game.PlaceId)].AutoCollect = false
+
+			local AutoCollect = env[tostring(game.PlaceId)].AutoCollect or false
+			local AutoConn
+			local AlrAutoCollect = false
+
+			if readsuccess then
+				local data = game:GetService("HttpService"):JSONDecode(read)
+
+				AutoCollect = data.AutoCollect
+
+				delfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
+			end
+
+			for _,plot in pairs(workspace.Plots:GetChildren()) do
+				if plot:GetAttribute("Owner") == plr.Name then
+					base = plot
+					break
+				end
+			end
+
+			selfMod:AddTG(TS, "Auto Collect", AutoCollect, function(v)
+				AutoCollect = v
+				SaveConfig(game.PlaceId, {AutoCollect = AutoCollect})
+				if v == true then
+					AutoConn = RunService.Heartbeat:Connect(function()
+						local Slots = base.Buttons
+						local char = plr.Character
+						for _,slot in pairs(Slots:GetChildren()) do
+							local TouchInterest = slot.TouchInterest
+							firetouchinterest(char.Head, slot, 0)
+							task.wait(0.5)
+							firetouchinterest(char.Head, slot, 1)
+						end
+					end)
+					AddConnection(AutoConn)
+				end
+				if v == false then
+					if AutoConn then
+						AutoConn:Disconnect()
+						AutoConn = nil
+					end
+				end
+			end)
 		end
 	}
 }
