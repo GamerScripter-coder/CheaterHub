@@ -469,6 +469,13 @@ end
 					end
 				end
 			end)
+
+			while true do
+				if env[tostring(game.PlaceId)].Disconnect == true then
+					DisconnectConnections()
+				end
+				task.wait(0.1)
+			end
 		end
 	}
 }
