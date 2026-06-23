@@ -658,23 +658,6 @@ end
 local AutoRejoin = env.AutoRejoin or false
 local UIS = game:GetService("UserInputService")
 
-local function write(file, txt)
-	pcall(function()
-		if writefile then
-			writefile(file, txt)
-		end
-	end)
-end
-
-local function read(file)
-	local r = pcall(function()
-		if readfile then
-			return readfile(file)
-		end
-	end)
-	return r
-end
-
 local function exstr(site)
 	loadstring(game:HttpGet(site, true))()
 end
