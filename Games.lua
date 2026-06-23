@@ -72,6 +72,8 @@ end
 				LastHealth = data.LastHealth
 				SettedLastHealth = data.SettedLastHealth
 				Invincible = data.Invincible
+
+				delfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
 			end
 
 local function Do(func)
@@ -341,6 +343,8 @@ end
 				local data = game:GetService("HttpService"):JSONDecode(read)
 
 				AutoAdmin = data.AutoAdmin
+
+			   delfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
 			end
 
 			local AdminConnection
@@ -477,6 +481,8 @@ end
 
 				AutoPlayAndTP = data.AutoPlayAndTP
 				AutoCollect = data.AutoCollect
+
+				delfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
 			end
 
 			selfMod:AddTG(TS, "Auto Play and Teleport End", AutoPlayAndTP, function(v)
