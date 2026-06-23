@@ -440,7 +440,7 @@ end
 						local char = game.Players.LocalPlayer.Character
 						local root = char.HumanoidRootPart
 
-						root.CFrame = VeryStartPos
+						root.CFrame = StartPos
 						task.wait(0.5)
 						root.CFrame = EndSpawnPoint.CFrame
 						task.wait(3)
