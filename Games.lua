@@ -1,3 +1,15 @@
+local function ensureFolder(path)
+    if not isfolder(path) then
+        makefolder(path)
+    end
+end
+
+local function SaveConfig(placeId, savedata)
+    local folderPath = "CheaterHub/" .. tostring(placeId)
+    ensureFolder(folderPath)
+    writefile(folderPath .. "/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
+end
+
 local Games = {
 	["Lucky Block Rush"] = {
 		Name = "Lucky Block Rush",
@@ -53,8 +65,7 @@ end
 			env[tostring(game.PlaceId)].ClickX2Speed = env[tostring(game.PlaceId)].ClickX2Speed or false
 			env[tostring(game.PlaceId)].LastHealth = env[tostring(game.PlaceId)].LastHealth or 0
 			env[tostring(game.PlaceId)].SettedLastHealth = env[tostring(game.PlaceId)].SettedLastHealth or false
-			env[tostring(game.PlaceId)].Invincible = env[tostring(game.PlaceId)].Invincible or false
-			env[tostring(game.PlaceId)].Disconnect = false
+				env[tostring(game.PlaceId)].Invincible = env[tostring(game.PlaceId)].Invincible or false
 
 			local FakeStrength = env[tostring(game.PlaceId)].FakeStrength or false
             local FakeMoney = env[tostring(game.PlaceId)].FakeMoney or false
@@ -149,21 +160,24 @@ local EquipBestBrainrotBtn = BackpackGUI:WaitForChild("Backpack")
 local SellBtn = HUD:WaitForChild("TeleportsContainer")
     :WaitForChild("Sell")
 					
-			selfMod:AddBTN(TS, "SetFakeMoney(Local)", function()
-				FakeMoney = not FakeMoney
-	            SetFakeMoney(CashLabel, CashLabel.Cash, "inf$")
-			end)
+selfMod:AddBTN(TS, "SetFakeMoney(Local)", function()
+					FakeMoney = not FakeMoney
+		            SetFakeMoney(CashLabel, CashLabel.Cash, "inf$")
+					SaveConfig(game.PlaceId, {FakeStrength = FakeStrength, FakeMoney = FakeMoney, ClickX2Speed = ClickX2Speed, LastHealth = LastHealth, SettedLastHealth = SettedLastHealth, Invincible = Invincible})
+				end)
 
-			selfMod:AddBTN(TS, "SetFakeStrength(Local)", function()
-				FakeStrength = not FakeStrength
-	            SetFakeStrength(StrengthLabel, StrengthLabel.Speed, "inf Strength")
-			end)
+selfMod:AddBTN(TS, "SetFakeStrength(Local)", function()
+					FakeStrength = not FakeStrength
+		            SetFakeStrength(StrengthLabel, StrengthLabel.Speed, "inf Strength")
+					SaveConfig(game.PlaceId, {FakeStrength = FakeStrength, FakeMoney = FakeMoney, ClickX2Speed = ClickX2Speed, LastHealth = LastHealth, SettedLastHealth = SettedLastHealth, Invincible = Invincible})
+				end)
 
 			local x2Connection
             local RunSx2
 
-			selfMod:AddTG(TS, "Click x2Speed Visibility", ClickX2Speed, function(v)
-				ClickX2Speed = v
+selfMod:AddTG(TS, "Click x2Speed Visibility", ClickX2Speed, function(v)
+					ClickX2Speed = v
+					SaveConfig(game.PlaceId, {FakeStrength = FakeStrength, FakeMoney = FakeMoney, ClickX2Speed = ClickX2Speed, LastHealth = LastHealth, SettedLastHealth = SettedLastHealth, Invincible = Invincible})
 
 	if v then
 		if x2Connection then
@@ -222,8 +236,9 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 			local BossesConn
             local HealthConn
 
-			selfMod:AddTG(TS, "InvincibleWithBosses", Invincible, function(v)
-				Invincible = v
+selfMod:AddTG(TS, "InvincibleWithBosses", Invincible, function(v)
+					Invincible = v
+					SaveConfig(game.PlaceId, {FakeStrength = FakeStrength, FakeMoney = FakeMoney, ClickX2Speed = ClickX2Speed, LastHealth = LastHealth, SettedLastHealth = SettedLastHealth, Invincible = Invincible})
 				if v == true then
       BossesConn = BossesFolder.ChildAdded:Connect(function(child)
 	     local PrimaryPart = child.PrimaryPart
@@ -279,21 +294,7 @@ local SellBtn = HUD:WaitForChild("TeleportsContainer")
 
 			AddConnection(HealthConn)
 
-			while true do
-				if env[tostring(game.PlaceId)].Disconnect == true then
-					DisconnectConnections()
-					local savedata = {
-				FakeStrength = FakeStrength,
-				FakeMoney = FakeMoney,
-				ClickX2Speed = ClickX2Speed,
-				LastHealth = LastHealth,
-				SettedLastHealth = SettedLastHealth,
-				Invincible = Invincible
-			}
-					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
-				end
-				task.wait(0.1)
-			end
+
 		end
 	},
 	["Be An Admin"] = {
@@ -334,8 +335,7 @@ end
 
 			local RunService = game:GetService("RunService")
 
-			env[tostring(game.PlaceId)].AutoAdmin = env[tostring(game.PlaceId)].AutoAdmin or false
-			env[tostring(game.PlaceId)].Disconnect = false
+				env[tostring(game.PlaceId)].AutoAdmin = env[tostring(game.PlaceId)].AutoAdmin or false
 
 			local AutoAdmin = env[tostring(game.PlaceId)].AutoAdmin or false
 
@@ -349,9 +349,10 @@ end
 
 			local AdminConnection
 
-			selfMod:AddTG(TS, "Auto Admin", AutoAdmin, function(v)
-				AutoAdmin = v
-				env.AutoAdmin = v
+selfMod:AddTG(TS, "Auto Admin", AutoAdmin, function(v)
+					AutoAdmin = v
+					env.AutoAdmin = v
+					SaveConfig(game.PlaceId, {AutoAdmin = AutoAdmin})
 				if AutoAdmin == true then
 					AdminConnection = RunService.Heartbeat:Connect(function()
 						local char = game.Players.LocalPlayer.Character
@@ -368,16 +369,7 @@ end
 				end
 			end)
 
-			while true do
-				if env[tostring(game.PlaceId)].Disconnect == true then
-					DisconnectConnections()
-					local savedata = {
-						AutoAdmin = AutoAdmin
-					}
-					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
-				end
-				task.wait(0.1)
-			end
+
 	    end
 	},
 	["Pilfering Pirates"] = {
@@ -466,8 +458,7 @@ end
 			local RunService = game:GetService("RunService")
 
 			env[tostring(game.PlaceId)].AutoPlayAndTP = false
-			env[tostring(game.PlaceId)].AutoCollect = false
-			env[tostring(game.PlaceId)].Disconnect = false
+				env[tostring(game.PlaceId)].AutoCollect = false
 
 			local AutoPlayAndTP = env[tostring(game.PlaceId)].AutoPlayAndTP or false
 			local AutoPlayConn
@@ -485,8 +476,9 @@ end
 				delfile("CheaterHub/"..tostring(game.PlaceId).."/Config.json")
 			end
 
-			selfMod:AddTG(TS, "Auto Play and Teleport End", AutoPlayAndTP, function(v)
-				AutoPlayAndTP = v
+selfMod:AddTG(TS, "Auto Play and Teleport End", AutoPlayAndTP, function(v)
+					AutoPlayAndTP = v
+					SaveConfig(game.PlaceId, {AutoPlayAndTP = AutoPlayAndTP, AutoCollect = AutoCollect})
 				if v == true then
 					AutoPlayConn = RunService.Heartbeat:Connect(function()
 						if AlrAutoPlaying == true then return end
@@ -529,8 +521,9 @@ end
 				end
 			end)
 
-			selfMod:AddTG(TS, "Auto Collect Money", AutoCollect, function(v)
-				AutoCollect = v
+selfMod:AddTG(TS, "Auto Collect Money", AutoCollect, function(v)
+					AutoCollect = v
+					SaveConfig(game.PlaceId, {AutoPlayAndTP = AutoPlayAndTP, AutoCollect = AutoCollect})
 				if v == true then
 					AutoConn = RunService.Heartbeat:Connect(function()
 						if AlrAutoCollect == true then return end
@@ -558,17 +551,7 @@ end
 				end
 			end)
 
-			while true do
-				if env[tostring(game.PlaceId)].Disconnect == true then
-					DisconnectConnections()
-					local savedata = {
-						AutoPlayAndTP = AutoPlayAndTP,
-						AutoCollect = AutoCollect
-					}
-					writefile("CheaterHub/"..tostring(game.PlaceId).."/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
-				end
-				task.wait(0.1)
-			end
+
 		end
 	}
 }
