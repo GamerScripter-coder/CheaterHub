@@ -1,13 +1,13 @@
 local env = getgenv()
 
-function ensureFolder(path)
+function env.ensureFolder(path)
     if not isfolder(path) then
         makefolder(path)
     end
 end
 
-function SaveConfig(placeId, savedata)
-    local folderPath = "CheaterHub/" .. tostring(placeId)
+function env.SaveConfig(savedata)
+    local folderPath = "CheaterHub/" .. tostring(game.PlaceId)
     ensureFolder(folderPath)
     writefile(folderPath .. "/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
 end
