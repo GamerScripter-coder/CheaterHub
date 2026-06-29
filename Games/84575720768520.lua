@@ -128,7 +128,7 @@ return function(M, T, IT)
 				local x2Connection
 	            local RunSx2
 
-				selfMod:AddTG(TS, "Click x2Speed Visibility", env.ClickX2Speed, function(v)
+				selfMod:AddTG(TS, "Click x2Speed Visibility", ClickX2Speed, function(v)
 					ClickX2Speed = v
                     env.SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
 
@@ -187,7 +187,7 @@ return function(M, T, IT)
 				local BossesConn
 	            local HealthConn
 
-				selfMod:AddTG(TS, "InvincibleWithBosses", env.Invincible, function(v)
+				selfMod:AddTG(TS, "InvincibleWithBosses", Invincible, function(v)
 					Invincible = v
                     env.SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
 					if v == true then
