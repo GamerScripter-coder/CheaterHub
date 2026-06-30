@@ -19,5 +19,6 @@ return function(M, T, IT)
     selfMod:AddTG(TS, "Auto Admin", AutoAdmin, function(v)
         AutoAdmin = v
         SaveConfig({AutoAdmin = AutoAdmin})
+        local touchpath = workspace.Bases.Admin.Claim.Touch
     end)
 end
