@@ -10,7 +10,7 @@ return function(M, T, IT)
 
     env.AutoAdmin = false
 
-    local AutoAdmin = false
+    local AutoAdmin = env.AutoAdmin or false
 
     if successConf and config then
         AutoAdmin = config.AutoAdmin
@@ -20,5 +20,10 @@ return function(M, T, IT)
         AutoAdmin = v
         SaveConfig({AutoAdmin = AutoAdmin})
         local touchpath = workspace.Bases.Admin.Claim.Touch
+        local pos = touchpath.CFrame
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, touchpath, 1)
+        wait(3.5)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, touchpath, 0)
+        touchpath.CFrame = pos
     end)
 end
