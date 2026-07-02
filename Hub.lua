@@ -786,9 +786,11 @@ function UIModule:AddSettings()
 		end
 
 		AutoRejoinConnection = GuiService.ErrorMessageChanged:Connect(function(msg)
-			if not env.AutoRejoin then
+			if not AutoRejoin then
 				return
 			end
+
+			print("Detected")
 
 			if msg ~= nil and msg ~= "" then
 				task.delay(1,function()
