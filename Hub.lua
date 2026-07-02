@@ -753,6 +753,8 @@ function UIModule:OpenTab(doFunc)
 	doFunc()
 end
 
+local AutoRejoinConnection
+
 function UIModule:AddSettings()
 	selfM:Refresh(TabsScrolling)
 
@@ -762,38 +764,40 @@ function UIModule:AddSettings()
 
 	local player = Players.LocalPlayer
 
-	if env.AutoRejoin == nil then
-		env.AutoRejoin = false
-	end
-
-	local conn
-
-	selfM:AddTG(TabsScrolling, "Auto Rejoin (on kick)", AutoRejoin, function(state)
+	selfM:AddTG(TabsScrolling, "Auto Rejoin (On Kick)", AutoRejoin, function(state)
 		AutoRejoin = state
-		SaveConfig({AutoRejoin = AutoRejoin}, "Universal")
 
-		if state then
-			-- evita doppie connessioni
-			if conn then
-				conn:Disconnect()
-				conn = nil
+		-- Salva configurazione
+		if SaveConfig then
+			SaveConfig({
+				AutoRejoin = state
+			}, "Universal")
+		end
+
+		-- Elimina eventuale vecchia connessione
+		if AutoRejoinConnection then
+			AutoRejoinConnection:Disconnect()
+			AutoRejoinConnection = nil
+		end
+
+		-- Se disattivato non fare altro
+		if not state then
+			return
+		end
+
+		AutoRejoinConnection = GuiService.ErrorMessageChanged:Connect(function(msg)
+			if not env.AutoRejoin then
+				return
 			end
 
-			conn = GuiService.ErrorMessageChanged:Connect(function(msg)
-				if AutoRejoin and msg and msg ~= "" then
-					task.wait(1)
+			if msg ~= nil and msg ~= "" then
+				task.delay(1,function()
 					pcall(function()
 						TeleportService:Teleport(game.PlaceId, player)
 					end)
-				end
-			end)
-
-		else
-			if conn then
-				conn:Disconnect()
-				conn = nil
+				end)
 			end
-		end
+		end)
 	end)
 end
 
