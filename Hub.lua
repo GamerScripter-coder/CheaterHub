@@ -657,7 +657,7 @@ local success, env = pcall(function()
 end)
 if env and success then
 env.AutoRejoin = false
-env.CustomGame
+env.CustomGame = false
 end
 local AutoRejoin = env.AutoRejoin or false
 local CustomGame = env.CustomGame or false

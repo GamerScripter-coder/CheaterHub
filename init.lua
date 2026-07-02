@@ -4,6 +4,27 @@ end
 
 local env = getgenv()
 
+local ImportantTable = {}
+
+function ImportantTable.LoadConfig()
+	local p = game.PlaceId
+	local tp = tostring(p)
+	local foldpath = "CheaterHub/"..tp
+	local configpath = foldpath.."/Config.json"
+	local suc, readed = pcall(function()
+		return readfile(configpath)
+	end)
+
+	if suc and readed then
+		return readed
+	else
+		return nil
+	end
+end
+
+ImportantTable.Plr = game.Players.LocalPlayer
+ImportantTable.Char = game.Players.LocalPlayer.Character
+
 function env.GetGithubPath(path)
 	local GamesFolderpath = "https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games/"
 	local Hubpath = "https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua"
