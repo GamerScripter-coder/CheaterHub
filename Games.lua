@@ -33,12 +33,6 @@ local function exstrICWD(code)
 	return loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/Decoder/refs/heads/main/DecodeAndExecute.lua", true))():ExecuteEncodedCode(code)
 end
 
-function env.GaveGame(site, M, T)
-	local func = loadstring(game:HttpGet(site, true))
-	local load = func()
-	load(M, T, ImportantTable)
-end
-
 local Games = {
 	["Lucky Block Rush"] = {
 		Name = GetGameName(84575720768520),

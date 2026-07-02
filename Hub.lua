@@ -657,10 +657,13 @@ local success, env = pcall(function()
 end)
 if env and success then
 env.AutoRejoin = false
+env.CustomGame
 end
 local AutoRejoin = env.AutoRejoin or false
+local CustomGame = env.CustomGame or false
 if success and readed then
 	AutoRejoin = readed.AutoRejoin
+	CustomGame = readed.CustomGame
 end
 local UIS = game:GetService("UserInputService")
 
@@ -769,9 +772,7 @@ function UIModule:AddSettings()
 
 		-- Salva configurazione
 		if SaveConfig then
-			SaveConfig({
-				AutoRejoin = state
-			}, "Universal")
+			SaveConfig({AutoRejoin = AutoRejoin, CustomGame = CustomGame}, "Universal")
 		end
 
 		-- Elimina eventuale vecchia connessione
@@ -804,6 +805,14 @@ function UIModule:AddSettings()
 	        end
         end)
 	end)
+	selfM:AddTG(TabsScrolling, "Custom Game(this can add ur custom games)", CustomGame, function(state)
+		CustomGame = state
+
+		if SaveConfig then
+			SaveConfig({AutoRejoin = AutoRejoin, CustomGame = CustomGame}, "Universal")
+		end
+
+	end)
 end
 
 function UIModule:AddHome()
@@ -828,7 +837,7 @@ end
 function UIModule:AddGame(id)
     selfM:Refresh(TabsScrolling)
     
-    local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true ))()
+    local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua",true))()
     local foundGame = false
     
     -- Recuperiamo il PlaceId come stringa per usarlo come chiave
@@ -836,7 +845,8 @@ function UIModule:AddGame(id)
     
     for _, g in pairs(GamesData) do
         if type(g) == "table" and g.Id then
-            selfM:AddGameChecker(g.Id, id, function()
+			task.spawn(function()
+				selfM:AddGameChecker(g.Id, id, function()
                 -- Inizializziamo la tabella del gioco in env se non esiste
                 if not env[pId] then 
                     env[pId] = {} 
@@ -852,9 +862,20 @@ function UIModule:AddGame(id)
                 -- Avvio delle funzioni del gioco
                 g.DoFunc(selfM, TabsScrolling)
                 foundGame = true
-            end)
+                end)
+			end)
         end
     end
+
+	if CustomGame then
+		local success, luascript = pcall(function()
+			return readfile("CheaterHub/"..pId..".lua")
+		end)
+		if success and luascript then
+			GaveCustomGame(luascript, selfM, TabsScrolling)
+			foundGame = true
+		end
+	end
     
     if not foundGame then
         selfM:AddLabel("This Game is not Supported: "..GetGameName(game.PlaceId))

@@ -70,6 +70,4 @@ function ele:L(Ltxt)
    clone.txt.Text = Ltxt
 end
 
-function ele:
-
 return elements

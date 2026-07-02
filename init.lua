@@ -55,5 +55,16 @@ function env.exstr(site)
 	return loadstring(game:HttpGet(site, true))()
 end
 
+function env.GaveGame(site, M, T)
+	local func = loadstring(game:HttpGet(site, true))
+	local load = func()
+	load(M, T, ImportantTable)
+end
+
+function env.GaveCustomGame(func, M, T)
+	local load = func()
+	load(M, T, ImportantTable)
+end
+
 exstr("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua")
 
