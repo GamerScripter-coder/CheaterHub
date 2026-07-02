@@ -18,34 +18,8 @@ function ImportantTable.LoadConfig()
 	end
 end
 
-function env.ensureFolder(path)
-    if not isfolder(path) then
-        makefolder(path)
-    end
-end
-
-function env.SaveConfig(savedata)
-	local p = game.PlaceId
-	local tp = tostring(p)
-    local folderPath = "CheaterHub/"..tp
-    ensureFolder(folderPath)
-    writefile(folderPath .. "/Config.json", game:GetService("HttpService"):JSONEncode(savedata))
-end
-
-function env.GetGithubPath(path)
-	local GamesFolderpath = "https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games/"
-	local Hubpath = "https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua"
-	local Gamespath = "https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua"
-	if path == "GamesFolder" then
-		return GamesFolderpath
-	end
-	if path == "Hub" then
-		return Hubpath
-	end
-	if path == "Games" then
-		return Gamespath
-	end
-end
+ImportantTable.Plr = game.Players.LocalPlayer
+ImportantTable.Char = game.Players.LocalPlayer.Character
 
 local function GetGameName(id)
    local MarketplaceService = game:GetService("MarketplaceService")
@@ -53,10 +27,6 @@ local function GetGameName(id)
    local info = MarketplaceService:GetProductInfo(id)
 
    return info.Name
-end
-
-function env.exstr(site)
-	return loadstring(game:HttpGet(site, true))()
 end
 
 local function exstrICWD(code)

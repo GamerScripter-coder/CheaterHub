@@ -649,6 +649,9 @@ local GameTeleporter = Templates.GameTeleporter
 local Tabs = Templates.Parent.Tabs
 local TabsScrolling = Tabs.Parent.TabsScrolling
 local Label = Templates.Label
+local success, readed = pcall(function()
+	return readfile("CheaterHub/Universal/Config.json")
+end)
 local success, env = pcall(function()
 	return getgenv()
 end)
@@ -656,11 +659,10 @@ if env and success then
 env.AutoRejoin = false
 end
 local AutoRejoin = env.AutoRejoin or false
-local UIS = game:GetService("UserInputService")
-
-local function exstr(site)
-	loadstring(game:HttpGet(site, true))()
+if success and readed then
+	AutoRejoin = readed.AutoRejoin
 end
+local UIS = game:GetService("UserInputService")
 
 local function GetGameName(id)
    local MarketplaceService = game:GetService("MarketplaceService")
@@ -668,6 +670,14 @@ local function GetGameName(id)
    local info = MarketplaceService:GetProductInfo(id)
 
    return info.Name
+end
+
+function UIModule:GetTemplates()
+	return Templates
+end
+
+function UIModule:GetTabsScrolling()
+	return TabsScrolling
 end
 
 function UIModule:AddBTN(tab, Btntxt, callback)
@@ -758,8 +768,9 @@ function UIModule:AddSettings()
 
 	local conn
 
-	selfM:AddTG(TabsScrolling, "Auto Rejoin (on kick)", env.AutoRejoin, function(state)
-		env.AutoRejoin = state
+	selfM:AddTG(TabsScrolling, "Auto Rejoin (on kick)", AutoRejoin, function(state)
+		AutoRejoin = state
+		SaveConfig({AutoRejoin = env.AutoRejoin}, "Universal")
 
 		if state then
 			-- evita doppie connessioni
@@ -900,7 +911,7 @@ for _,btn in pairs(Tabs:GetChildren()) do
 end
 
 if queue_on_teleport then
-	queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua", true))()')
+	queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/init.lua", true))()')
 end
 
 local UIS = game:GetService("UserInputService")

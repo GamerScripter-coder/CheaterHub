@@ -21,6 +21,7 @@ return function(M, T, IT)
         SaveConfig({AutoAdmin = AutoAdmin})
         local touchpath = workspace.Bases.Admin.Claim.Touch
         local pos = touchpath.CFrame
+        local char = game.Players.LocalPlayer.Character
         firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, touchpath, 1)
         wait(3.5)
         firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, touchpath, 0)
