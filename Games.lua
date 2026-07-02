@@ -1,25 +1,5 @@
 local env = getgenv()
 local LoadingGame = false
-local ImportantTable = {}
-
-function ImportantTable.LoadConfig()
-	local p = game.PlaceId
-	local tp = tostring(p)
-	local foldpath = "CheaterHub/"..tp
-	local configpath = foldpath.."/Config.json"
-	local suc, readed = pcall(function()
-		return readfile(configpath)
-	end)
-
-	if suc and readed then
-		return readed
-	else
-		return nil
-	end
-end
-
-ImportantTable.Plr = game.Players.LocalPlayer
-ImportantTable.Char = game.Players.LocalPlayer.Character
 
 local function GetGameName(id)
    local MarketplaceService = game:GetService("MarketplaceService")
@@ -27,10 +7,6 @@ local function GetGameName(id)
    local info = MarketplaceService:GetProductInfo(id)
 
    return info.Name
-end
-
-local function exstrICWD(code)
-	return loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/Decoder/refs/heads/main/DecodeAndExecute.lua", true))():ExecuteEncodedCode(code)
 end
 
 local Games = {
