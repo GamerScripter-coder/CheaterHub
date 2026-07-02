@@ -657,13 +657,13 @@ local success, env = pcall(function()
 end)
 if env and success then
 env.AutoRejoin = false
-env.CustomGame = false
+env.CustomGame = true
 end
 local AutoRejoin = env.AutoRejoin or false
-local CustomGame = env.CustomGame or false
+local CustomGame = env.CustomGame or true
 if success and readed then
 	AutoRejoin = readed.AutoRejoin
-	CustomGame = readed.CustomGame
+	CustomGame = readed.CustomGame or env.CustomGame
 end
 local UIS = game:GetService("UserInputService")
 
@@ -811,7 +811,6 @@ function UIModule:AddSettings()
 		if SaveConfig then
 			SaveConfig({AutoRejoin = AutoRejoin, CustomGame = CustomGame}, "Universal")
 		end
-
 	end)
 end
 
