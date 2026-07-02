@@ -786,20 +786,23 @@ function UIModule:AddSettings()
 		end
 
 		AutoRejoinConnection = GuiService.ErrorMessageChanged:Connect(function(msg)
-			if not AutoRejoin then
-				return
-			end
+	        if not AutoRejoin then
+		       return
+	        end
 
-			print("Detected")
+	        print("Detected:", msg)
 
-			if msg ~= nil and msg ~= "" then
-				task.delay(1,function()
-					pcall(function()
-						TeleportService:Teleport(game.PlaceId, player)
-					end)
-				end)
-			end
-		end)
+	        if msg ~= "" then
+		       task.wait(1)
+
+		       local success, err = pcall(function()
+			       print("Teleporting...")
+			       TeleportService:Teleport(game.PlaceId)
+		       end)
+
+		       print(success, err)
+	        end
+        end)
 	end)
 end
 
