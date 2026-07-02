@@ -826,12 +826,14 @@ function UIModule:AddGames()
     
     local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true ))()
     
+	task.spawn(function()
     for _, g in pairs(GamesData) do
         -- Controlliamo che sia una tabella (un gioco) e non una funzione
         if type(g) == "table" and g.Name and g.Id then
             selfM:AddGT(TabsScrolling, g.Name, g.Id)
         end
     end
+    end)
 end
 
 function UIModule:AddGame(id)
@@ -843,6 +845,7 @@ function UIModule:AddGame(id)
     -- Recuperiamo il PlaceId come stringa per usarlo come chiave
     local pId = tostring(game.PlaceId)
     
+	task.spawn(function()
     for _, g in pairs(GamesData) do
         if type(g) == "table" and g.Id then
 			task.spawn(function()
@@ -866,6 +869,7 @@ function UIModule:AddGame(id)
 			end)
         end
     end
+    end)
 
 	if CustomGame then
 		local success, luascript = pcall(function()
