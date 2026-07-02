@@ -876,6 +876,7 @@ function UIModule:AddGame(id)
 			return readfile("CheaterHub/"..pId..".lua")
 		end)
 		if success and luascript then
+			print("Found")
 			GaveCustomGame(luascript, selfM, TabsScrolling)
 			foundGame = true
 		end
