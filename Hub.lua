@@ -876,8 +876,8 @@ function UIModule:AddGame(id)
 			return readfile("CheaterHub/"..pId..".lua")
 		end)
 		if success and luascript then
-			print("Found")
-			GaveCustomGame(luascript, selfM, TabsScrolling)
+			local loadstringed = loadstring(luascript)
+			GaveCustomGame(loadstringed, selfM, TabsScrolling)
 			foundGame = true
 		end
 	end
@@ -903,7 +903,7 @@ function UIModule:AddUniversalCheats()
 		exstr("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 	end)
 
-	selfM:AddLabel("Version: 1.1.7")
+	selfM:AddLabel("Version: 1.1.8")
 end
 
 function UIModule:AddCredits()
