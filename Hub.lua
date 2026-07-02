@@ -770,7 +770,7 @@ function UIModule:AddSettings()
 
 	selfM:AddTG(TabsScrolling, "Auto Rejoin (on kick)", AutoRejoin, function(state)
 		AutoRejoin = state
-		SaveConfig({AutoRejoin = env.AutoRejoin}, "Universal")
+		SaveConfig({AutoRejoin = AutoRejoin}, "Universal")
 
 		if state then
 			-- evita doppie connessioni
@@ -780,7 +780,7 @@ function UIModule:AddSettings()
 			end
 
 			conn = GuiService.ErrorMessageChanged:Connect(function(msg)
-				if env.AutoRejoin and msg and msg ~= "" then
+				if AutoRejoin and msg and msg ~= "" then
 					task.wait(1)
 					pcall(function()
 						TeleportService:Teleport(game.PlaceId, player)
