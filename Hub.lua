@@ -656,13 +656,13 @@ local success, env = pcall(function()
 	return getgenv()
 end)
 if env and success then
-env.AutoRejoin = false
+env.AutoRejoin = true
 env.CustomGame = true
 end
-local AutoRejoin = env.AutoRejoin or false
+local AutoRejoin = env.AutoRejoin or true
 local CustomGame = env.CustomGame or true
 if success and readed then
-	AutoRejoin = readed.AutoRejoin
+	AutoRejoin = readed.AutoRejoin or env.AutoRejoin
 	CustomGame = readed.CustomGame or env.CustomGame
 end
 local UIS = game:GetService("UserInputService")
