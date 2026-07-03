@@ -25,14 +25,14 @@ return function(M, T, IT)
 			env.FakeStrength = env.FakeStrength or false
 			env.FakeMoney = env.FakeMoney or false
 			env.ClickX2Speed = env.ClickX2Speed or false
-			env.LastHealth = env.LastHealth or 0
+			env.LastHealth = env.LastHealth or 3000
 			env.SettedLastHealth = env.SettedLastHealth or false
 			env.Invincible = env.Invincible or false
 
 			local FakeStrength = env.FakeStrength or false
             local FakeMoney = env.FakeMoney or false
             local ClickX2Speed = env.ClickX2Speed or false
-            local LastHealth = env.LastHealth or 0
+            local LastHealth = env.LastHealth or 3000
             local SettedLastHealth = env.SettedLastHealth or false
 			local Invincible = env.Invincible or false
 
@@ -40,8 +40,6 @@ return function(M, T, IT)
                 FakeStrength = config.FakeStrength
                 FakeMoney = config.FakeMoney
                 ClickX2Speed = config.ClickX2Speed
-                LastHealth = config.LastHealth
-                SettedLastHealth = config.SettedLastHealth
                 Invincible = config.Invincible
             end
 
