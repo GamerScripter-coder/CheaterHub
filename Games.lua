@@ -16,7 +16,7 @@ local Games = {
 		DoFunc = function(module, TabsScrolling)
 			if LoadingGame then return end
 			LoadingGame = true
-			GaveGame(GetGithubPath("GamesFolder").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
 			LoadingGame = false
 		end
 	},
@@ -26,7 +26,7 @@ local Games = {
 		DoFunc = function(module, TabsScrolling)
 			if LoadingGame then return end
 			LoadingGame = true
-			GaveGame(GetGithubPath("GamesFolder").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
 			LoadingGame = false
 	    end
 	},
@@ -36,7 +36,7 @@ local Games = {
 		DoFunc = function(module, TabsScrolling)
 			if LoadingGame then return end
 			LoadingGame = true
-			GaveGame(GetGithubPath("GamesFolder").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
 			LoadingGame = false
 		end
 	},
@@ -46,7 +46,7 @@ local Games = {
 		DoFunc = function(module, TabsScrolling)			
 			if LoadingGame then return end
 			LoadingGame = true
-			GaveGame(GetGithubPath("GamesFolder").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
 			LoadingGame = false
 		end
 	},
@@ -56,7 +56,7 @@ local Games = {
 		DoFunc = function(module, TabsScrolling)
 			if LoadingGame then return end
 			LoadingGame = true
-			GaveGame(GetGithubPath("GamesFolder").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
 			LoadingGame = false
 		end
 	},
