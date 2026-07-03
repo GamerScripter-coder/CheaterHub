@@ -720,6 +720,14 @@ function UIModule:AddTG(tab, TGtxt, current, callback)
 	end)
 end
 
+function UIModule:Load(args, funcback)
+	if args then
+	    funcback(args)
+	else
+		funcback()
+	end
+end
+
 function UIModule:AddGT(tab, GtTxt, gameId)
 	local clone = GameTeleporter:Clone()
 	clone.Parent = tab
@@ -896,7 +904,7 @@ function UIModule:AddUniversalCheats()
 		exstr("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 	end)
 
-	selfM:AddLabel("Version: 1.1.9")
+	selfM:AddLabel("Version: 1.2.0")
 end
 
 function UIModule:AddCredits()
@@ -993,5 +1001,44 @@ UIS.InputChanged:Connect(function(Input)
 		Update(Input)
 	end
 end)
+
+selfM:Load(AutoRejoin, function(state)
+			AutoRejoin = state
+
+		-- Salva configurazione
+		if SaveConfig then
+			SaveConfig({AutoRejoin = AutoRejoin, CustomGame = CustomGame}, "Universal")
+		end
+
+		-- Elimina eventuale vecchia connessione
+		if AutoRejoinConnection then
+			AutoRejoinConnection:Disconnect()
+			AutoRejoinConnection = nil
+		end
+
+		-- Se disattivato non fare altro
+		if not state then
+			return
+		end
+
+		AutoRejoinConnection = GuiService.ErrorMessageChanged:Connect(function(msg)
+	        if not AutoRejoin then
+		       return
+	        end
+			
+		       local success, err = pcall(function()
+			       print("Teleporting...")
+			       TeleportService:Teleport(game.PlaceId, player)
+		       end)
+
+			   print(success, err)
+        end)
+end)
+
+selfM:AddGame(game.PlaceId)
+
+selfM:Refresh(TabsScrolling)
+
+selfM:AddHome()
 
 return UIModule
