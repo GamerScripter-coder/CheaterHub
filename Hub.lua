@@ -790,19 +790,13 @@ function UIModule:AddSettings()
 	        if not AutoRejoin then
 		       return
 	        end
-
-	        print("Detected:", msg)
-
-	        if msg ~= "" then
-		       task.wait(1)
-
+			
 		       local success, err = pcall(function()
 			       print("Teleporting...")
 			       TeleportService:Teleport(game.PlaceId, player)
 		       end)
 
-		       print(success, err)
-	        end
+			   print(success, err)
         end)
 	end)
 	selfM:AddTG(TabsScrolling, "Custom Game(this can add ur custom games)", CustomGame, function(state)
