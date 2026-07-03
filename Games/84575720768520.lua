@@ -103,13 +103,13 @@ return function(M, T, IT)
 						
 				selfMod:AddBTN(TS, "SetFakeMoney(Local)", function()
 					FakeMoney = not FakeMoney
-                    env.SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
+                    SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
 		            SetFakeMoney(CashLabel, CashLabel.Cash, "inf$")
 				end)
 
 				selfMod:AddBTN(TS, "SetFakeStrength(Local)", function()
 					FakeStrength = not FakeStrength
-                    env.SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
+                    SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
 		            SetFakeStrength(StrengthLabel, StrengthLabel.Speed, "inf Strength")
 				end)
 
@@ -118,7 +118,7 @@ return function(M, T, IT)
 
 				selfMod:AddTG(TS, "Click x2Speed Visibility", ClickX2Speed, function(v)
 					ClickX2Speed = v
-                    env.SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
+                    SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
 
 		if v then
 			if x2Connection then
@@ -177,7 +177,7 @@ return function(M, T, IT)
 
 				selfMod:AddTG(TS, "InvincibleWithBosses", Invincible, function(v)
 					Invincible = v
-                    env.SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
+                    SaveConfig({FakeMoney = FakeMoney, FakeStrength = FakeStrength, ClickX2Speed = ClickX2Speed, Invincible = Invincible})
 					if v == true then
 	      BossesConn = BossesFolder.ChildAdded:Connect(function(child)
 		     local PrimaryPart = child.PrimaryPart
