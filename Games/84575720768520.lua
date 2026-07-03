@@ -16,7 +16,7 @@ return function(M, T, IT)
             --// Player
             local LocalPlayer = Players.LocalPlayer
             local player = LocalPlayer
-            local PlayerGui = player:WaitForChild("PlayerGui")
+            local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
             --// Workspace
             local BossesFolder = workspace:WaitForChild("Bosses")
