@@ -845,11 +845,9 @@ function UIModule:AddGame(id)
     
     -- Recuperiamo il PlaceId come stringa per usarlo come chiave
     local pId = tostring(game.PlaceId)
-    
-	task.spawn(function()
+
     for _, g in pairs(GamesData) do
         if type(g) == "table" and g.Id then
-			task.spawn(function()
 				selfM:AddGameChecker(g.Id, id, function()
                 -- Inizializziamo la tabella del gioco in env se non esiste
                 if not env[pId] then 
@@ -867,10 +865,8 @@ function UIModule:AddGame(id)
                 g.DoFunc(selfM, TabsScrolling)
                 foundGame = true
                 end)
-			end)
         end
     end
-    end)
 
 	if CustomGame then
 		local success, luascript = pcall(function()
