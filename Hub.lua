@@ -798,7 +798,7 @@ function UIModule:AddSettings()
 
 		       local success, err = pcall(function()
 			       print("Teleporting...")
-			       TeleportService:Teleport(game.PlaceId)
+			       TeleportService:Teleport(game.PlaceId, player)
 		       end)
 
 		       print(success, err)
@@ -902,7 +902,7 @@ function UIModule:AddUniversalCheats()
 		exstr("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 	end)
 
-	selfM:AddLabel("Version: 1.1.8")
+	selfM:AddLabel("Version: 1.1.9")
 end
 
 function UIModule:AddCredits()
