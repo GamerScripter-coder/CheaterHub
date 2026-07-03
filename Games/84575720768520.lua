@@ -22,8 +22,6 @@ return function(M, T, IT)
             local BossesFolder = workspace:WaitForChild("Bosses")
             local Plots = workspace:WaitForChild("Plots")
 
-			local TVM = 
-
 			env.FakeStrength = env.FakeStrength or false
 			env.FakeMoney = env.FakeMoney or false
 			env.ClickX2Speed = env.ClickX2Speed or false
@@ -65,11 +63,6 @@ return function(M, T, IT)
 
 		label.Text = value
 		label2.Text = value
-
-		local parsed = TVM:GetStringInNumberUnits(set)
-		if parsed then
-			player.leaderstats.Cash.Value = parsed
-		end
 	end
 
 	local function SetFakeMoney(label, label2, set)
@@ -77,11 +70,6 @@ return function(M, T, IT)
 
 		label.Text = value
 		label2.Text = value
-
-		local parsed = TVM:GetStringInNumberUnits(set)
-		if parsed then
-			player.leaderstats.Cash.Value = parsed
-		end
 	end
 
 				local SpeedUi = GetUi("SpeedEffect")
