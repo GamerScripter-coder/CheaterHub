@@ -8,7 +8,7 @@ return function(M, T, IT)
         return IT.LoadConfig()
     end)
 
-	local config = game:GetService("HttpService"):JSONDecode(encconfig)
+	local config = game:GetService("HttpService"):JSONDecode(enconfig)
 
             local Players = game:GetService("Players")
             local RunService = game:GetService("RunService")
