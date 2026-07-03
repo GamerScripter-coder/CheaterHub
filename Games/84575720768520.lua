@@ -4,9 +4,11 @@ return function(M, T, IT)
     local env = getgenv()
     local selfMod = M
     local TS = T
-    local successConf, config = pcall(function()
+    local successConf, enconfig = pcall(function()
         return IT.LoadConfig()
     end)
+
+	local config = game:GetService("HttpService"):JSONDecode(encconfig)
 
             local Players = game:GetService("Players")
             local RunService = game:GetService("RunService")
