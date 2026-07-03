@@ -16,8 +16,10 @@ function ImportantTable.LoadConfig()
 	end)
 
 	if suc and readed then
+		print("suc")
 		return readed
 	else
+		print("nil")
 		return nil
 	end
 end
