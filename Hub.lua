@@ -1037,12 +1037,4 @@ end)
 
 selfM:AddGame(game.PlaceId)
 
-task.wait(0.5)
-
-selfM:Refresh(TabsScrolling)
-
-task.wait(0.5)
-
-selfM:AddHome()
-
 return UIModule
