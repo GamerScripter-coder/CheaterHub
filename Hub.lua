@@ -999,6 +999,10 @@ UIS.InputChanged:Connect(function(Input)
 end)
 
 selfM:Load(AutoRejoin, function(state)
+	local TeleportService = game:GetService("TeleportService")
+	local GuiService = game:GetService("GuiService")
+	local Players = game:GetService("Players")
+
 			AutoRejoin = state
 
 		-- Salva configurazione
@@ -1024,7 +1028,7 @@ selfM:Load(AutoRejoin, function(state)
 			
 		       local success, err = pcall(function()
 			       print("Teleporting...")
-			       TeleportService:Teleport(game.PlaceId, player)
+			       TeleportService:Teleport(game.PlaceId)
 		       end)
 
 			   print(success, err)
@@ -1033,7 +1037,11 @@ end)
 
 selfM:AddGame(game.PlaceId)
 
+task.wait(0.5)
+
 selfM:Refresh(TabsScrolling)
+
+task.wait(0.5)
 
 selfM:AddHome()
 
