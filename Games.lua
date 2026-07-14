@@ -85,6 +85,16 @@ local Games = {
 
 			selfMod:AddLabel("Work in progress")
 		end
+	},
+	["Break Eggs for brainrots"] = {
+		Name = GetGameName(119271610514030),
+		Id = 119271610514030,
+		DoFunc = function(module, TabsScrolling)
+			if LoadingGame then return end
+			LoadingGame = true
+			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+			LoadingGame = false
+		end
 	}
 }
 
