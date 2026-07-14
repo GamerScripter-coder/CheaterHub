@@ -90,7 +90,7 @@ return function(M, T, IT)
 
         while AutoHit do
             local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
-            ham:Active()
+            ham:Activate()
             task.wait(0.5)
         end
     end)
