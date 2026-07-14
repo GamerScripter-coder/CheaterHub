@@ -8,7 +8,9 @@ return function(M, T, IT)
         return IT.LoadConfig()
     end)
 
-	local config = game:GetService("HttpService"):JSONDecode(enconfig)
+	local config = pcall(function()
+        game:GetService("HttpService"):JSONDecode(enconfig)
+    end)
 
     local player = game.Players.LocalPlayer
     local id = player.UserId
