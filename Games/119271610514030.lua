@@ -26,8 +26,9 @@ return function(M, T, IT)
     local velId = "i4"
 
     local function AddKeyFunc(KE, func)
-        UIS.InputBegan:Connect(function(inp, GPE)
+        UIS.InputBegan:Connect(function(ck, GPE)
             if GPE then return end
+            local inp = ck.KeyCode
 
             if inp == KE then
                 func()
