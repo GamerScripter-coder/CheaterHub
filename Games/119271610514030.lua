@@ -105,6 +105,21 @@ return function(M, T, IT)
     local id = player.UserId
     local HammerFPN = tostring(id)..":"
     local takepos = CFrame.new(8, 2, -83)
+    local invId = "i2"
+    local medId = "i5"
+    local balId = "i23"
+    local swaId = "i6"
+    local bazId = "i14"
+    local batId = "i10"
+    local velId = "i4"
+
+    local function FindTool(pos, PON)
+        for _,ch in pairs(pos:GetChildren()) do
+            if ch:IsA("Tool") and string.find(ch.Name, PON, 1, true) then
+			   return ch
+		    end
+        end
+    end
 
     local function FindHammer(pos)
         for _,ch in pairs(pos:GetChildren()) do
@@ -138,6 +153,15 @@ return function(M, T, IT)
         end
     end
 
+    local function EquipWithFind(PON)
+        local hum = GetHumanoid()
+
+        local pos1 = player.Backpack
+        local pos2 = player.Character
+        hum:EquipTool(FindTool(pos1, PON))
+        hum:EquipTool(FindTool(pos2, PON))
+    end
+
     env.AutoHit = false
     env.AutoIstantBrainrotPrompt = false
 
@@ -164,7 +188,7 @@ return function(M, T, IT)
         local hum = GetHumanoid()
         local char = hum.Parent
         if not hum or char then return end
-        PickingUp = not PickingUp
+        PickingUp = true
 
         local root = char.HumanoidRootPart
         root.CFrame = root.CFrame + CFrame.new(0,5.5,0)
@@ -173,10 +197,34 @@ return function(M, T, IT)
             CreateLegPart()
             hum:MoveTo(takepos)
             hum.MoveToFinished:Wait()
-            PickingUp = not PickingUp
+            PickingUp = false
             task.wait()
         end
 
         DestroyLegParts()
+    end)
+
+    selfMod:AddBTN(TS, "Equip Invisible", function()
+        EquipWithFind(invId)
+    end)
+
+    selfMod:AddBTN(TS, "Equip Medusa", function()
+        EquipWithFind(medId)
+    end)
+
+    selfMod:AddBTN(TS, "Equip Baloon", function()
+        EquipWithFind(balId)
+    end)
+
+    selfMod:AddBTN(TS, "Equip Body Swap", function()
+        EquipWithFind(swaId)
+    end)
+
+    selfMod:AddBTN(TS, "Equip Bazooka", function()
+        EquipWithFind(bazId)
+    end)
+
+    selfMod:AddBTN(TS, "Equip Speed Coil", function()
+        EquipWithFind(velId)
     end)
 end
