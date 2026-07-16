@@ -351,6 +351,7 @@ end
 
             while egg and egg.Parent do
             local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
+            hum:EquipTool(ham)
 
                if ham then
                   ham:Activate()
