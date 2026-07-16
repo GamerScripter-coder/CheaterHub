@@ -46,17 +46,18 @@ return function(M, T, IT)
     end
 
     local function FindTool(pos, PON, name)
-        if tools[name] then
-            if tools[name] ~= nil then
-                return tools[name]
-            end
-        end
-        for _,ch in pairs(pos:GetChildren()) do
-            if ch:IsA("Tool") and string.find(ch.Name, PON, 1, true) then
-                tools[name] = ch
-			   return ch
-		    end
-        end
+    if tools[name] and tools[name].Parent then
+        return tools[name]
+    end
+
+    local prefix = PON .. ":"
+
+    for _, ch in ipairs(pos:GetChildren()) do
+        if ch:IsA("Tool") and ch.Name:sub(1, #prefix) == prefix then
+             tools[name] = ch
+             return ch
+          end
+       end
     end
 
     local function FindHammer(pos)
