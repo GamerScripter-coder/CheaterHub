@@ -1,7 +1,7 @@
 -- Break Eggs For Brainrots
 
 return function(M, T, IT)
-    print([[    local env = getgenv()
+    print([[local env = getgenv()
     local selfMod = M
     local TS = T
     local successConf, enconfig = pcall(function()
@@ -214,7 +214,15 @@ end
 
     AddKeyFunc(Enum.KeyCode.N, function()
         EquipWithFind(velId, "Vel")
-    end)]])
+    end)
+
+    while egg and egg.Parent do
+        if ham then
+            ham:Activate()
+        end
+
+        task.wait(0.5)
+    end]])
     local env = getgenv()
     local selfMod = M
     local TS = T
@@ -429,4 +437,12 @@ end
     AddKeyFunc(Enum.KeyCode.N, function()
         EquipWithFind(velId, "Vel")
     end)
+
+    while egg and egg.Parent do
+        if ham then
+            ham:Activate()
+        end
+
+        task.wait(0.5)
+    end
 end
