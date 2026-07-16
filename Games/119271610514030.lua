@@ -109,6 +109,7 @@ return function(M, T, IT)
 
     for _, model in ipairs(workspace.EggRenderModels:GetChildren()) do
         local hitbox = model:FindFirstChild("Hitbox")
+        hitbox.Size = Vector3.new(hitbox.Size.X * 2, hitbox.Size.Y * 2, hitbox.Size.Z * 2)
 
         if hitbox then
             local distance = (hitbox.Position - hrp.Position).Magnitude
@@ -322,6 +323,7 @@ end
 
     for _, model in ipairs(workspace.EggRenderModels:GetChildren()) do
         local hitbox = model:FindFirstChild("Hitbox")
+        hitbox.Size = Vector3.new(hitbox.Size.X * 2, hitbox.Size.Y * 2, hitbox.Size.Z * 2)
 
         if hitbox then
             local distance = (hitbox.Position - hrp.Position).Magnitude
