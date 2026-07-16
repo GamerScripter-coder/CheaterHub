@@ -108,7 +108,14 @@ return function(M, T, IT)
     local closestDistance = math.huge
 
     for _, model in ipairs(workspace.EggRenderModels:GetChildren()) do
+        local render = model.RenderModel
+        for _,part in pairs(render:GetChildren()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
+            end
+        end
         local hitbox = model:FindFirstChild("Hitbox")
+        hitbox.CanCollide = false
         hitbox.Size = Vector3.new(hitbox.Size.X * 2, hitbox.Size.Y * 2, hitbox.Size.Z * 2)
 
         if hitbox then
