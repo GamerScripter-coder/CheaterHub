@@ -101,16 +101,41 @@ return function(M, T, IT)
         hum:EquipTool(FindTool(pos2, PON, name))
     end
 
+    local function FindClosestEgg()
+    local hrp = player.Character:WaitForChild("HumanoidRootPart")
+
+    local closest
+    local closestDistance = math.huge
+
+    for _, model in ipairs(workspace.EggRenderModels:GetChildren()) do
+        local hitbox = model:FindFirstChild("Hitbox")
+
+        if hitbox then
+            local distance = (hitbox.Position - hrp.Position).Magnitude
+
+            if distance < closestDistance then
+                closestDistance = distance
+                closest = hitbox
+            end
+        end
+    end
+
+    return closest
+end
+
     env.AutoHit = false
     env.AutoIstantBrainrotPrompt = false
+    env.AutoFarm = false
 
     local AutoHit = env.AutoHit or false
     local AutoIstantBrainrotPrompt = env.AutoIstantBrainrotPrompt or false
-    local PickingUp = false
+    local AutoFarm = env.AutoFarm or false
+    local Destroying = false
 
     if successConf and config then
         AutoHit = config.AutoHit
         AutoIstantBrainrotPrompt = config.AutoIstantBrainrotPrompt
+        AutoFarm = config.AutoFarm
     end
 
     selfMod:AddTG(TS, "Auto Hit Eggs", AutoHit, function(v)
@@ -123,24 +148,29 @@ return function(M, T, IT)
         end
     end)
 
-    selfMod:AddBTN(TS, "PickUp", function()
-        local hum = GetHumanoid()
-        local char = hum.Parent
-        if not hum or char then return end
-        PickingUp = true
+    selfMod:AddTG(TS, "AutoFarm Pet Coins + Vault Keys(Destroy Eggs)", AutoFarm, function(v)
+        AutoFarm = v
 
-        local root = char.HumanoidRootPart
-        root.CFrame = root.CFrame + CFrame.new(0,5.5,0)
+        while AutoFarm do
+            local egg = FindClosestEgg()
+            local hum = GetHumanoid()
+            local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
+            hum:EquipTool(ham)
 
-        while PickingUp do
-            CreateLegPart()
-            hum:MoveTo(takepos)
+            hum:MoveTo(egg.Position)
             hum.MoveToFinished:Wait()
-            PickingUp = false
-            task.wait()
-        end
 
-        DestroyLegParts()
+            Destroying = true
+
+            while egg and egg.Parent do
+               if ham then
+                  ham:Activate()
+               end
+
+               task.wait(0.2)
+            end
+            task.wait(0.5)
+        end
     end)
 
     selfMod:AddBTN(TS, "Equip Invisible[Z]", function()
