@@ -130,7 +130,8 @@ end
     local AutoHit = env.AutoHit or false
     local AutoIstantBrainrotPrompt = env.AutoIstantBrainrotPrompt or false
     local AutoFarm = env.AutoFarm or false
-    local Destroying = false
+    local egg
+    local ham
 
     if successConf and config then
         AutoHit = config.AutoHit
@@ -142,7 +143,7 @@ end
         AutoHit = v
 
         while AutoHit do
-            local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
+            ham = FindHammer(player.Backpack) or FindHammer(player.Character)
             ham:Activate()
             task.wait(0.5)
         end
@@ -152,23 +153,14 @@ end
         AutoFarm = v
 
         while AutoFarm do
-            local egg = FindClosestEgg()
+            egg = FindClosestEgg()
             local hum = GetHumanoid()
-            local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
+            ham = FindHammer(player.Backpack) or FindHammer(player.Character)
             hum:EquipTool(ham)
 
             hum:MoveTo(egg.Position)
             hum.MoveToFinished:Wait()
 
-            Destroying = true
-
-            while egg and egg.Parent do
-               if ham then
-                  ham:Activate()
-               end
-
-               task.wait(0.2)
-            end
             task.wait(0.5)
         end
     end)
@@ -219,7 +211,15 @@ end
 
     AddKeyFunc(Enum.KeyCode.N, function()
         EquipWithFind(velId, "Vel")
-    end)]])
+    end)
+
+    while egg and egg.Parent do
+        if ham then
+            ham:Activate()
+        end
+
+        task.wait(0.2)
+    end]])
     local env = getgenv()
     local selfMod = M
     local TS = T
