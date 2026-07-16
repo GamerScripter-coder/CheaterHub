@@ -158,6 +158,8 @@ end
             ham = FindHammer(player.Backpack) or FindHammer(player.Character)
             hum:EquipTool(ham)
 
+            ham:Activate()
+
             hum:MoveTo(egg.Position)
             hum.MoveToFinished:Wait()
 
@@ -211,15 +213,7 @@ end
 
     AddKeyFunc(Enum.KeyCode.N, function()
         EquipWithFind(velId, "Vel")
-    end)
-
-    while egg and egg.Parent do
-        if ham then
-            ham:Activate()
-        end
-
-        task.wait(0.2)
-    end]])
+    end)]])
     local env = getgenv()
     local selfMod = M
     local TS = T
@@ -377,6 +371,8 @@ end
             ham = FindHammer(player.Backpack) or FindHammer(player.Character)
             hum:EquipTool(ham)
 
+            ham:Activate()
+
             hum:MoveTo(egg.Position)
             hum.MoveToFinished:Wait()
 
@@ -431,12 +427,4 @@ end
     AddKeyFunc(Enum.KeyCode.N, function()
         EquipWithFind(velId, "Vel")
     end)
-
-    while egg and egg.Parent do
-        if ham then
-            ham:Activate()
-        end
-
-        task.wait(0.2)
-    end
 end
