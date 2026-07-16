@@ -343,6 +343,8 @@ end
         while AutoFarm do
             local egg = FindClosestEgg()
             local hum = GetHumanoid()
+            local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
+            hum:EquipTool(ham)
 
             hum:MoveTo(egg.Position)
             hum.MoveToFinished:Wait()
@@ -350,9 +352,6 @@ end
             Destroying = true
 
             while egg and egg.Parent do
-            local ham = FindHammer(player.Backpack) or FindHammer(player.Character)
-            hum:EquipTool(ham)
-
                if ham then
                   ham:Activate()
                end
