@@ -438,7 +438,7 @@ end
         EquipWithFind(velId, "Vel")
     end)
 
-    while egg and egg.Parent do
+    while AutoFarm do
         if ham then
             ham:Activate()
         end
