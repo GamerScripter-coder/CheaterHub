@@ -1,7 +1,7 @@
 -- Break Eggs For Brainrots
 
 return function(M, T, IT)
-    print([[local env = getgenv()
+    print([[    local env = getgenv()
     local selfMod = M
     local TS = T
     local successConf, enconfig = pcall(function()
@@ -24,6 +24,15 @@ return function(M, T, IT)
     local bazId = "i14"
     local batId = "i10"
     local velId = "i4"
+    local tools = {
+        Inv = nil,
+        Med = nil,
+        Bal = nil,
+        Swa = nil,
+        Baz = nil,
+        Bat = nil,
+        Vel = nil
+    }
 
     local function AddKeyFunc(KE, func)
         UIS.InputBegan:Connect(function(ck, GPE)
@@ -36,9 +45,15 @@ return function(M, T, IT)
         end)
     end
 
-    local function FindTool(pos, PON)
+    local function FindTool(pos, PON, name)
+        if tools[name] then
+            if tools[name] ~= nil then
+                return tools[name]
+            end
+        end
         for _,ch in pairs(pos:GetChildren()) do
             if ch:IsA("Tool") and string.find(ch.Name, PON, 1, true) then
+                tools[name] = ch
 			   return ch
 		    end
         end
@@ -76,13 +91,13 @@ return function(M, T, IT)
         end
     end
 
-    local function EquipWithFind(PON)
+    local function EquipWithFind(PON, name)
         local hum = GetHumanoid()
 
         local pos1 = player.Backpack
         local pos2 = player.Character
-        hum:EquipTool(FindTool(pos1, PON))
-        hum:EquipTool(FindTool(pos2, PON))
+        hum:EquipTool(FindTool(pos1, PON, name))
+        hum:EquipTool(FindTool(pos2, PON, name))
     end
 
     env.AutoHit = false
@@ -128,51 +143,51 @@ return function(M, T, IT)
     end)
 
     selfMod:AddBTN(TS, "Equip Invisible[Z]", function()
-        EquipWithFind(invId)
+        EquipWithFind(invId, "Inv")
     end)
 
     selfMod:AddBTN(TS, "Equip Medusa[X]", function()
-        EquipWithFind(medId)
+        EquipWithFind(medId, "Med")
     end)
 
     selfMod:AddBTN(TS, "Equip Baloon[C]", function()
-        EquipWithFind(balId)
+        EquipWithFind(balId, "Bal")
     end)
 
     selfMod:AddBTN(TS, "Equip Body Swap[V]", function()
-        EquipWithFind(swaId)
+        EquipWithFind(swaId, "Swa")
     end)
 
     selfMod:AddBTN(TS, "Equip Bazooka[B]", function()
-        EquipWithFind(bazId)
+        EquipWithFind(bazId, "Baz")
     end)
 
     selfMod:AddBTN(TS, "Equip Speed Coil[N]", function()
-        EquipWithFind(velId)
+        EquipWithFind(velId, "Vel")
     end)
 
     AddKeyFunc(Enum.KeyCode.Z, function()
-        EquipWithFind(invId)
+        EquipWithFind(invId, "Inv")
     end)
 
     AddKeyFunc(Enum.KeyCode.X, function()
-        EquipWithFind(medId)
+        EquipWithFind(medId, "Med")
     end)
 
     AddKeyFunc(Enum.KeyCode.C, function()
-        EquipWithFind(balId)
+        EquipWithFind(balId, "Bal")
     end)
 
     AddKeyFunc(Enum.KeyCode.V, function()
-        EquipWithFind(swaId)
+        EquipWithFind(swaId, "Swa")
     end)
 
     AddKeyFunc(Enum.KeyCode.B, function()
-        EquipWithFind(bazId)
+        EquipWithFind(bazId, "Baz")
     end)
 
     AddKeyFunc(Enum.KeyCode.N, function()
-        EquipWithFind(velId)
+        EquipWithFind(velId, "Vel")
     end)]])
     local env = getgenv()
     local selfMod = M
@@ -197,6 +212,15 @@ return function(M, T, IT)
     local bazId = "i14"
     local batId = "i10"
     local velId = "i4"
+    local tools = {
+        Inv = nil,
+        Med = nil,
+        Bal = nil,
+        Swa = nil,
+        Baz = nil,
+        Bat = nil,
+        Vel = nil
+    }
 
     local function AddKeyFunc(KE, func)
         UIS.InputBegan:Connect(function(ck, GPE)
@@ -209,9 +233,15 @@ return function(M, T, IT)
         end)
     end
 
-    local function FindTool(pos, PON)
+    local function FindTool(pos, PON, name)
+        if tools[name] then
+            if tools[name] ~= nil then
+                return tools[name]
+            end
+        end
         for _,ch in pairs(pos:GetChildren()) do
             if ch:IsA("Tool") and string.find(ch.Name, PON, 1, true) then
+                tools[name] = ch
 			   return ch
 		    end
         end
@@ -249,13 +279,13 @@ return function(M, T, IT)
         end
     end
 
-    local function EquipWithFind(PON)
+    local function EquipWithFind(PON, name)
         local hum = GetHumanoid()
 
         local pos1 = player.Backpack
         local pos2 = player.Character
-        hum:EquipTool(FindTool(pos1, PON))
-        hum:EquipTool(FindTool(pos2, PON))
+        hum:EquipTool(FindTool(pos1, PON, name))
+        hum:EquipTool(FindTool(pos2, PON, name))
     end
 
     env.AutoHit = false
@@ -301,50 +331,50 @@ return function(M, T, IT)
     end)
 
     selfMod:AddBTN(TS, "Equip Invisible[Z]", function()
-        EquipWithFind(invId)
+        EquipWithFind(invId, "Inv")
     end)
 
     selfMod:AddBTN(TS, "Equip Medusa[X]", function()
-        EquipWithFind(medId)
+        EquipWithFind(medId, "Med")
     end)
 
     selfMod:AddBTN(TS, "Equip Baloon[C]", function()
-        EquipWithFind(balId)
+        EquipWithFind(balId, "Bal")
     end)
 
     selfMod:AddBTN(TS, "Equip Body Swap[V]", function()
-        EquipWithFind(swaId)
+        EquipWithFind(swaId, "Swa")
     end)
 
     selfMod:AddBTN(TS, "Equip Bazooka[B]", function()
-        EquipWithFind(bazId)
+        EquipWithFind(bazId, "Baz")
     end)
 
     selfMod:AddBTN(TS, "Equip Speed Coil[N]", function()
-        EquipWithFind(velId)
+        EquipWithFind(velId, "Vel")
     end)
 
     AddKeyFunc(Enum.KeyCode.Z, function()
-        EquipWithFind(invId)
+        EquipWithFind(invId, "Inv")
     end)
 
     AddKeyFunc(Enum.KeyCode.X, function()
-        EquipWithFind(medId)
+        EquipWithFind(medId, "Med")
     end)
 
     AddKeyFunc(Enum.KeyCode.C, function()
-        EquipWithFind(balId)
+        EquipWithFind(balId, "Bal")
     end)
 
     AddKeyFunc(Enum.KeyCode.V, function()
-        EquipWithFind(swaId)
+        EquipWithFind(swaId, "Swa")
     end)
 
     AddKeyFunc(Enum.KeyCode.B, function()
-        EquipWithFind(bazId)
+        EquipWithFind(bazId, "Baz")
     end)
 
     AddKeyFunc(Enum.KeyCode.N, function()
-        EquipWithFind(velId)
+        EquipWithFind(velId, "Vel")
     end)
 end
