@@ -102,4 +102,11 @@ function Games:GetGame(name)
 	return Games[name] or nil
 end
 
+function Games:RunGame(module, TabsScrolling)
+	if LoadingGame then return end
+	LoadingGame = true
+	GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
+	LoadingGame = false
+end
+
 return Games

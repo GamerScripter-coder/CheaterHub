@@ -849,20 +849,7 @@ function UIModule:AddGame(id)
     for _, g in pairs(GamesData) do
         if type(g) == "table" and g.Id then
 				selfM:AddGameChecker(g.Id, id, function()
-                -- Inizializziamo la tabella del gioco in env se non esiste
-                if not env[pId] then 
-                    env[pId] = {} 
-                end
-                
-                -- Sistema di reset connessioni/loop
-                if env[pId].Disconnect ~= nil then
-                    env[pId].Disconnect = true
-                    task.wait(0.5)
-                end
-                env[pId].Disconnect = false
-                
-                -- Avvio delle funzioni del gioco
-                g.DoFunc(selfM, TabsScrolling)
+                Games:RunGame(selfM, TabsScrolling)
                 foundGame = true
                 end)
         end
@@ -881,6 +868,7 @@ function UIModule:AddGame(id)
     
     if not foundGame then
         selfM:AddLabel("This Game is not Supported: "..GetGameName(game.PlaceId))
+		Notify("MMSGHub", "Sorry this game is not available Retry Later", "error", 5)
     end
 end
 
