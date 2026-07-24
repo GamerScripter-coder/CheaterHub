@@ -229,7 +229,6 @@ local function attachRipple(btn)
 	end)
 end
 
-local function Notify(title, text, kind, duration)
 	kind = kind or "info"
 	duration = duration or 4
 	local palette = {
@@ -295,7 +294,7 @@ local function Notify(title, text, kind, duration)
 		TweenService:Create(prog, tOut, {BackgroundTransparency = 1}):Play()
 		task.wait(0.4); card:Destroy()
 	end)
-end
+	
 end
 
 Notify("Hello", "This is a message to see if MMSGHub is working.", "info", 5)
