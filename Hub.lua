@@ -1023,7 +1023,7 @@ selfM:Load(AutoRejoin, function(state)
         end)
 end)
 
-Notify("Hello", "This is a message to see if MMSGHub is working.", "info", 5)
+Notify("Hello", "This is a message2 to see if MMSGHub is working.", "info", 5)
 selfM:AddGame(game.PlaceId)
 
 return UIModule

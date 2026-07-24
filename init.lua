@@ -298,5 +298,7 @@ local function Notify(title, text, kind, duration)
 end
 end
 
+Notify("Hello", "This is a message to see if MMSGHub is working.", "info", 5)
+
 exstr("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua")
 
