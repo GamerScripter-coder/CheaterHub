@@ -24,6 +24,7 @@ return function(M, T, IT)
     local bazId = "i14"
     local batId = "i10"
     local velId = "i4"
+    local flyId = "i25"
     local tools = {
         Inv = nil,
         Med = nil,
@@ -31,7 +32,8 @@ return function(M, T, IT)
         Swa = nil,
         Baz = nil,
         Bat = nil,
-        Vel = nil
+        Vel = nil,
+        Fly = nil
     }
 
     local function AddKeyFunc(KE, func)
@@ -192,6 +194,10 @@ end
         EquipWithFind(velId, "Vel")
     end)
 
+    selfMod:AddBTN(TS, "Equip Flying Carpet (if u have)[F]", function()
+        EquipWithFind(flyId, "Fly")
+    end)
+
     AddKeyFunc(Enum.KeyCode.Z, function()
         EquipWithFind(invId, "Inv")
     end)
@@ -214,6 +220,10 @@ end
 
     AddKeyFunc(Enum.KeyCode.N, function()
         EquipWithFind(velId, "Vel")
+    end)
+
+    AddKeyFunc(Enum.KeyCode.F, function()
+        EquipWithFind(flyId, "Fly")
     end)
 
     while AutoFarm do
