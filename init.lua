@@ -304,14 +304,6 @@ function env.DoFunc1p2(func1, func2)
 	func2()
 end
 
-function env.RegisterKey()
-	local HttpService = game:GetService("HttpService")
-	HttpService()
-	env.Keys.
-end
-
-function env.RegisterFunc
-
 Notify("Hello", "This is a message to see if MMSGHub is working.", "info", 5)
 
 exstr("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua")
