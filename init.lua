@@ -294,8 +294,23 @@ end
 		TweenService:Create(prog, tOut, {BackgroundTransparency = 1}):Play()
 		task.wait(0.4); card:Destroy()
 	end)
-	
+
 end
+
+function env.DoFunc1p2(func1, func2)
+	if not func1 or func2 then Notify("Sorry thats an error", "use Double of the functions") return end
+
+	func1()
+	func2()
+end
+
+function env.RegisterKey()
+	local HttpService = game:GetService("HttpService")
+	HttpService()
+	env.Keys.
+end
+
+function env.RegisterFunc
 
 Notify("Hello", "This is a message to see if MMSGHub is working.", "info", 5)
 

@@ -13,9 +13,9 @@ return function(M, T, IT)
     local ex = {
         Summon = function()
             if env.CustomFunctions then
-               local ev = game.ReplicatedStorage.Events.SummonBrainrots
-               local args = { [1] = Workspace.Locations:FindFirstChild("End"), n = 1 }
-               ev:FireServer(SafeUnpack(args, 1, args.n or #args))
+                local ev = game.ReplicatedStorage.Events.SummonBrainrots
+                local args = { [1] = Workspace.Locations:FindFirstChild("End"), n = 1 }
+                ev:FireServer(SafeUnpack(args, 1, args.n or #args) or unpack(args, 1, args.n or #args))
             else
                 local ev = game.ReplicatedStorage.Events.SummonBrainrots
                 local args = { [1] = Workspace.Locations:FindFirstChild("End"), n = 1 }

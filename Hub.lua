@@ -734,7 +734,11 @@ function UIModule:AddGT(tab, GtTxt, gameId)
 	clone.txt.Text = GtTxt
 	clone.MouseButton1Click:Connect(function()
 		local plr = game.Players.LocalPlayer
-		game:GetService("TeleportService"):Teleport(gameId, plr)
+		local success, err = pcall(function()
+		    game:GetService("TeleportService"):Teleport(gameId, plr)
+		end)
+
+		Notify("Sorry thats an error during the Teleport", err, "error", 5)
 	end)
 end
 
@@ -804,7 +808,7 @@ function UIModule:AddSettings()
 			       TeleportService:Teleport(game.PlaceId, player)
 		       end)
 
-			   print(success, err)
+			   Notify("Sorry Thats an error during the rejoin", err, "error", 5)
         end)
 	end)
 	selfM:AddTG(TabsScrolling, "Custom Game(this can add ur custom games)", CustomGame, function(state)
@@ -849,7 +853,7 @@ function UIModule:AddGame(id)
     for _, g in pairs(GamesData) do
         if type(g) == "table" and g.Id then
 				selfM:AddGameChecker(g.Id, id, function()
-                Games:RunGame(selfM, TabsScrolling)
+                GamesData:RunGame(selfM, TabsScrolling)
                 foundGame = true
                 end)
         end
@@ -1019,7 +1023,7 @@ selfM:Load(AutoRejoin, function(state)
 			       TeleportService:Teleport(game.PlaceId)
 		       end)
 
-			   print(success, err)
+			   Notify("Sorry Thats an error during the rejoin", err, "error", 5)
         end)
 end)
 

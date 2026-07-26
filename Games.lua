@@ -103,7 +103,7 @@ function Games:GetGame(name)
 end
 
 function Games:RunGame(module, TabsScrolling)
-	if LoadingGame then return end
+	if LoadingGame then Notify("MMSGHub", "You'are Already Loading a Game wait a few", "error", 5) return end
 	LoadingGame = true
 	GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
 	LoadingGame = false
