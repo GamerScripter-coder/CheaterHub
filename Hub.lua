@@ -1,6 +1,7 @@
 local UIModule = {}
 local selfM = UIModule
 
+
 -- UI IN CODE
 local G2L = {};
 
@@ -649,6 +650,7 @@ local GameTeleporter = Templates.GameTeleporter
 local Tabs = Templates.Parent.Tabs
 local TabsScrolling = Tabs.Parent.TabsScrolling
 local Label = Templates.Label
+local v = "Version: 1.2.5"
 local success, readed = pcall(function()
 	return readfile("CheaterHub/Universal/Config.json")
 end)
@@ -892,7 +894,7 @@ function UIModule:AddUniversalCheats()
 		exstr("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")
 	end)
 
-	selfM:AddLabel("Version: 1.2.5")
+	selfM:AddLabel(v)
 end
 
 function UIModule:AddCredits()

@@ -3,6 +3,7 @@ if not game:IsLoaded() then
 end
 
 local env = getgenv()
+local v = "Version: 1.2.5"
 
 local ImportantTable = {}
 
@@ -304,7 +305,22 @@ function env.DoFunc1p2(func1, func2)
 	func2()
 end
 
+local vecTable = {
+    ["3"] = Vector3,
+    ["2"] = Vector2
+}
+
+function env.Vector(n, pos)
+    local vec = vecTable[tostring(n)]
+    if not vec then
+        return nil
+    end
+
+    return vec.new(pos[1], pos[2], pos[3])
+end
+
 Notify("Hello", "This is a message to see if MMSGHub is working.", "info", 5)
+Notify("Hello", "From MMSGHub "..v)
 
 exstr("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Hub.lua")
 

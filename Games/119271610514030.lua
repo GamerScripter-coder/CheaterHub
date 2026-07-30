@@ -25,6 +25,11 @@ return function(M, T, IT)
     local batId = "i10"
     local velId = "i4"
     local flyId = "i25"
+    local Services = game:GetService("ReplicatedStorage").Packages.Knit.Services
+    local valutS = Services.EggValutService
+    local spawnS = Services.EggSpawnerService
+    local HitEgg = spawnS.RF.RequestHitEgg
+    local HitValutEgg = valutS.RF.RequestHitValutEgg
     local tools = {
         Inv = nil,
         Med = nil,
@@ -162,8 +167,9 @@ end
             hum:EquipTool(ham)
 
             ham:Activate()
+            HitEgg:InvokeServer()
 
-            hum:MoveTo(egg.Position)
+            hum:MoveTo(egg.Position - Vector(3, {1.5,0,1.5}))
             hum.MoveToFinished:Wait()
 
             task.wait(0.5)

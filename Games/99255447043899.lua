@@ -9,6 +9,10 @@ return function(M, T, IT)
     end)
 
     local config = game:GetService("HttpService"):JSONDecode(encconfig)
+    local data = {
+        SpawnPos = Vector(3, {46, 4, 15}),
+        EndPos = Vector(3, {46, 6, -1835})
+    }
 
     local ex = {
         Summon = function()
@@ -21,6 +25,7 @@ return function(M, T, IT)
                 local args = { [1] = Workspace.Locations:FindFirstChild("End"), n = 1 }
                 ev:FireServer(unpack(args, 1, args.n or #args))
             end
-        end
+        end,
+
     }
 end
