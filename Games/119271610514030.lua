@@ -26,7 +26,7 @@ return function(M, T, IT)
     local velId = "i4"
     local flyId = "i25"
     local Services = game:GetService("ReplicatedStorage").Packages.Knit.Services
-    local valutS = Services.EggValutService
+    local valutS = Services.EggVaultService
     local spawnS = Services.EggSpawnerService
     local HitEgg = spawnS.RF.RequestHitEgg
     local HitValutEgg = valutS.RF.RequestHitValutEgg
