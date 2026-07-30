@@ -29,7 +29,7 @@ return function(M, T, IT)
     local valutS = Services.EggVaultService
     local spawnS = Services.EggSpawnerService
     local HitEgg = spawnS.RF.RequestHitEgg
-    local HitValutEgg = valutS.RF.RequestHitValutEgg
+    local HitValutEgg = valutS.RF.RequestHitVaultEgg
     local tools = {
         Inv = nil,
         Med = nil,
