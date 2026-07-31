@@ -3,7 +3,7 @@ if not game:IsLoaded() then
 end
 
 local env = getgenv()
-local v = "Version: 1.2.7"
+local v = "Version: 1.2.8"
 
 local ImportantTable = {}
 

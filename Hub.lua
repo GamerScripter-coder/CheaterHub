@@ -650,7 +650,7 @@ local GameTeleporter = Templates.GameTeleporter
 local Tabs = Templates.Parent.Tabs
 local TabsScrolling = Tabs.Parent.TabsScrolling
 local Label = Templates.Label
-local v = "Version: 1.2.7"
+local v = "Version: 1.2.8"
 local success, readed = pcall(function()
 	return readfile("CheaterHub/Universal/Config.json")
 end)

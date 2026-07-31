@@ -25,16 +25,21 @@ return function(M, T, IT)
 
     selfMod:AddTG(TS, "Auto Collect Pets", AutoPets, function(v)
         AutoPets = v
+        local char = lplr.Character
+        local root = char.HumanoidRootPart
 
         while AutoPets do
         for _, child in ipairs(places:GetChildren()) do
            local prompt = child:FindFirstChildWhichIsA("ProximityPrompt")
+           local hitbox = child:FindFirstChild("HitBox")
 
            if prompt and prompt.Enabled then
                  fireproximityprompt(prompt, prompt.HoldDuration)
                  task.wait(0.1)
               end
            end
+
+           root.CFrame = hitbox.CFrame
 
            task.wait(0.2)
         end
