@@ -24,7 +24,7 @@ return function(M, T, IT)
     local AutoSell = env.AutoSell or false
 
     selfMod:AddTG(TS, "Auto Collect Pets", AutoPets, function(v)
-        AutoPets = V
+        AutoPets = v
 
         while AutoPets do
             for _,child in pairs(places:GetChildren()) do
