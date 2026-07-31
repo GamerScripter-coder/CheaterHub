@@ -14,50 +14,35 @@ local Games = {
 		Name = GetGameName(84575720768520),
 		Id = 84575720768520,
 		DoFunc = function(module, TabsScrolling)
-			if LoadingGame then return end
-			LoadingGame = true
-			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
-			LoadingGame = false
+			Games:RunGame(module, TabsScrolling)
 		end
 	},
 	["Be An Admin"] = {
 		Name = "Be An Admin",
 		Id = 79462658240386,
 		DoFunc = function(module, TabsScrolling)
-			if LoadingGame then return end
-			LoadingGame = true
-			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
-			LoadingGame = false
+			Games:RunGame(module, TabsScrolling)
 	    end
 	},
 	["Pilfering Pirates"] = {
 		Name = GetGameName(6104994594),
 		Id = 6104994594,
 		DoFunc = function(module, TabsScrolling)
-			if LoadingGame then return end
-			LoadingGame = true
-			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
-			LoadingGame = false
+			Games:RunGame(module, TabsScrolling)
 		end
 	},
 	["Become a Brainrot"] = {
 		Name = GetGameName(99255447043899),
 		Id = 99255447043899,
 		DoFunc = function(module, TabsScrolling)			
-			if LoadingGame then return end
-			LoadingGame = true
-			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
-			LoadingGame = false
+			Games:RunGame(module, TabsScrolling)
 		end
 	},
 	["Kick a Lucky Block"] = {
 		Name = GetGameName(89469502395769),
 		Id = 89469502395769,
 		DoFunc = function(module, TabsScrolling)
-			if LoadingGame then return end
-			LoadingGame = true
-			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
-			LoadingGame = false
+			Games:RunGame(module, TabsScrolling)
 		end
 	},
 	["Scream for Brainrots"] = {
@@ -90,10 +75,14 @@ local Games = {
 		Name = GetGameName(119271610514030),
 		Id = 119271610514030,
 		DoFunc = function(module, TabsScrolling)
-			if LoadingGame then return end
-			LoadingGame = true
-			GaveGame(GetGithubPath("GF").."/"..tostring(game.PlaceId)..".lua", module, TabsScrolling)
-			LoadingGame = false
+			Games:RunGame(module, TabsScrolling)
+		end
+	},
+	["Build a Pet Factory"] = {
+		Name = GetGameName(135729108619936),
+		Id = 135729108619936,
+		DoFunc = function(module, TabsScrolling)
+			Games:RunGame(module, TabsScrolling)
 		end
 	}
 }

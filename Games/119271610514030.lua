@@ -167,10 +167,9 @@ end
             hum:EquipTool(ham)
 
             ham:Activate()
-            HitEgg:InvokeServer()
+            HitEgg:InvokeServer({[1] = egg.Parent.Name})
 
             hum:MoveTo(egg.Position - Vector(3, {1.5,0,1.5}))
-            hum.MoveToFinished:Wait()
 
             task.wait(0.5)
         end
