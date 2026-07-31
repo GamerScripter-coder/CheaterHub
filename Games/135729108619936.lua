@@ -27,14 +27,16 @@ return function(M, T, IT)
         AutoPets = v
 
         while AutoPets do
-            for _,child in pairs(places:GetChildren()) do
-                if child:FindFirstChildOfClass("ProximityPrompt") then
-                    local prompt =  child:FindFirstChildOfClass("ProximityPrompt")
-                    fireproximityprompt(prompt)
-                end
-            end
+        for _, child in ipairs(places:GetChildren()) do
+           local prompt = child:FindFirstChildWhichIsA("ProximityPrompt")
 
-            task.wait(0.2)
+           if prompt and prompt.Enabled then
+                 fireproximityprompt(prompt, prompt.HoldDuration)
+                 task.wait(0.1)
+              end
+           end
+
+           task.wait(0.2)
         end
     end)
 
