@@ -33,6 +33,8 @@ return function(M, T, IT)
                     fireproximityprompt(prompt)
                 end
             end
+
+            task.wait(0.2)
         end
     end)
 
@@ -46,6 +48,8 @@ return function(M, T, IT)
             firetouchinterest(root, sell, 1)
             task.wait(0.5)
             firetouchinterest(root, sell, 0)
+
+            task.wait(0.2)
         end
     end)
 end
