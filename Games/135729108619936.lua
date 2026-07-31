@@ -30,7 +30,7 @@ return function(M, T, IT)
             for _,child in pairs(places:GetChildren()) do
                 if child:FindFirstChildOfClass("ProximityPrompt") then
                     local prompt =  child:FindFirstChildOfClass("ProximityPrompt")
-                    fireproximityprompt(prompt)
+                    fireproximityprompt(prompt, 0.5)
                 end
             end
 
