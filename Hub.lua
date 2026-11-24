@@ -830,9 +830,30 @@ end
 
 function UIModule:AddGames()
     selfM:Refresh(TabsScrolling)
-    
-    local GamesData = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true ))()
-    
+
+	local okHttp, src = pcall(function()
+		return game:HttpGet("https://raw.githubusercontent.com/GamerScripter-coder/CheaterHub/refs/heads/main/Games.lua", true)
+    end)
+
+local GamesData = {}
+if okHttp and type(src) == "string" and #src > 0 then
+	local fn, loadErr = loadstring(src)
+	if type(fn) == "function" then
+		local okRun, res = pcall(fn)
+		if okRun and type(res) == "table" then
+			GamesData = res
+		elseif not okRun then
+			warn("[AddGames] Errore eseguendo Games.lua:", res)
+		else
+			warn("[AddGames] Games.lua non ha restituito una tabella")
+		end
+	else
+		warn("[AddGames] Errore loadstring su Games.lua:", loadErr)
+	end
+else
+	warn("[AddGames] HttpGet fallito su Games.lua:", src)
+end
+	
 	task.spawn(function()
     for _, g in pairs(GamesData) do
         -- Controlliamo che sia una tabella (un gioco) e non una funzione
