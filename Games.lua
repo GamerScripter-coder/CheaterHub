@@ -87,7 +87,7 @@ local Games = {
 	},
 	["Throw Food For Animals"] = {
 		Name = GetGameName(120219252362013),
-		Id = 120219252362013
+		Id = 120219252362013,
 		DoFunc = function(module, TabsScrolling)
 			Games:RunGame(module, TabsScrolling)
 		end
